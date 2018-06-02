@@ -3,6 +3,7 @@ var gulp = require('gulp');
 // Build Path
 var path = require('path');
 const BUILD_PATH = path.join(__dirname, './dist');
+const WATCH_PATH = path.join(__dirname, './target/demo-0.0.1-SNAPSHOT/WEB-INF/classes/static');
 
 // Globs
 const GLOBS = {
@@ -122,7 +123,7 @@ gulp.task('watchStyle', function () {
       watch: true,
       devtool: 'inline-source-map',
     })))
-    .pipe(gulp.dest(BUILD_PATH))
+    .pipe(gulp.dest(WATCH_PATH))
 });
 
 gulp.task('watchCode', function () {
@@ -134,5 +135,5 @@ gulp.task('watchCode', function () {
       watch: true,
       devtool: 'inline-source-map',
     })))
-    .pipe(gulp.dest(BUILD_PATH))
+    .pipe(gulp.dest(WATCH_PATH))
 });

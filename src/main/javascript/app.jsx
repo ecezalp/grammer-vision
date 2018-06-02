@@ -1,18 +1,19 @@
 import React from 'react';
 import {MuiThemeProvider} from "material-ui";
-import {BrowserRouter, Route, Switch} from "react-router-dom";
+import {BrowserRouter, Route} from "react-router-dom";
+import Landing from "./components/landing";
+import DataRepository from "./components/dataRepository";
 
 export default function App() {
 
-  const home = () => <h1>YOU ARE HOME</h1>;
+  const dataRepository = new DataRepository();
 
-  const test = () => <h1>THIS IS TEST</h1>;
+  const landing = () => <Landing dataRepository={dataRepository}/>;
 
   return <MuiThemeProvider>
     <BrowserRouter>
-      <div className="blog-inner-container">
-        <Route exact path="/" component={home}/>
-        <Route path="/test" component={test}/>
+      <div className="app-container">
+        <Route exact path="/" component={landing}/>
       </div>
     </BrowserRouter>
   </MuiThemeProvider>;

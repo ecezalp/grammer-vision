@@ -11,11 +11,10 @@ import java.util.concurrent.atomic.AtomicLong;
 @RequestMapping("/api")
 public class ApiController {
 
-  private static final String template = "Hello, %s!";
-  private final AtomicLong counter = new AtomicLong();
-
-  @RequestMapping(method = RequestMethod.GET, value = "/greetings")
-  public String greeting(@RequestParam(value = "name", defaultValue = "World") String name) {
-    return "Hello " + name;
+  @RequestMapping(method = RequestMethod.GET, value = "/hashtags")
+  public String query(@RequestParam(value = "name") String name,
+                         @RequestParam(value = "pic_count") String picCount,
+                         @RequestParam(value = "tag_count") String tagCount) {
+    return "Hello " + name + "your count is " + picCount + "and your tag count is " + tagCount;
   }
 }

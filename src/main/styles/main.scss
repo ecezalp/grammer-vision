@@ -1,0 +1,52 @@
+.app-container {
+  background-color: ivory;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .landing-container {
+    background-color: aliceblue;
+    font-family: monospace;
+    height: 60%;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+
+    .landing-form {
+      display: flex;
+      flex-direction: column;
+      width: 55%;
+      justify-content: space-between;
+
+      .solo-input-container {
+        display: flex;
+        justify-content: flex-end;
+
+        .landing-input {
+          margin-left: 10px;
+        }
+
+        .landing-input::placeholder {
+          color: lightgray;
+        }
+      }
+
+      .submit-button {
+        text-align: right;
+        cursor: pointer;
+        margin-top: 10px;
+      }
+    }
+
+    .options-container {
+      display: flex;
+      width: 40%;
+      justify-content: space-evenly;
+    }
+  }
+}
+
