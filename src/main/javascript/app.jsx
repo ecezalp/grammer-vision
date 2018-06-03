@@ -2,7 +2,7 @@ import React from 'react';
 import {MuiThemeProvider} from "material-ui";
 import {BrowserRouter, Route} from "react-router-dom";
 import Landing from "./components/landing";
-import DataRepository from "./components/dataRepository";
+import DataRepository from "./components/instaRepository";
 
 export default function App() {
 

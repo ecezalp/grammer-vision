@@ -16,10 +16,7 @@ public class GramService {
 
   public Instagram initializeInsta() throws IOException {
     InstagramService service = instantiateService();
-
-    System.out.println("SERVICE OK");
     Token token = getToken(service);
-    System.out.println("TOKEN OK");
     Instagram insta = new Instagram(token);
     insta.setAccessToken(token);
     return insta;
@@ -27,20 +24,15 @@ public class GramService {
 
   private InstagramService instantiateService(){
     return new InstagramAuthService()
-      .apiKey("")
-      .apiSecret("")
+      .apiKey("ee271e5b982f4e9385e400f67095e15a")
+      .apiSecret("f79e95af6ec6440bad64efe4ca639c52")
       .callback("http://localhost:8080/api/callback")
-      .scope("basic public_content")
       .build();
   }
 
-
-
   private Token getToken(InstagramService service) throws IOException {
     String authorizationUrl = service.getAuthorizationUrl();
-    System.out.println(authorizationUrl);
     Verifier verifier = new Verifier(authorizationUrl);
-    System.out.println(verifier);
     return service.getAccessToken(verifier);
   }
 }
