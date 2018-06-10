@@ -1,4 +1,4 @@
-package com.grammarvision.demo.domain.controllers;
+package com.grammarvision.demo.web;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class WelcomeController {
 
-  @RequestMapping(value = "/")
+  @RequestMapping(value ={"/", "/token"})
   public String index() {
     return "index.html";
   }

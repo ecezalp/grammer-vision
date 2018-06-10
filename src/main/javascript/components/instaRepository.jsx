@@ -14,10 +14,12 @@ export default class InstaRepository {
   }
 
   getHashtagData(hashtag) {
-    if (!window.localStorage.getItem("insta_code") || window.localStorage.getItem("insta_code") === "") this.authenticate();
-    axios.get(`https://api.instagram.com/v1/users/self/media/recent?access_token=${window.localStorage.getItem("insta_code")}`)
+    debugger;
+    let item = window.localStorage.getItem("grammer_vision");
+    if (item === null || item === "undefined" || typeof item === "undefined" || item === undefined) return this.authenticate();
+    axios.get(`https://api.instagram.com/v1/users/self/media/recent?access_token=${item}`)
       .then(function (response) {
-        console.log(response.data)
+        console.log(response)
       })
       .catch(function (error) {
         console.log(error);

@@ -46,6 +46,7 @@ export default class Landing extends React.Component {
   submitButton(){return <div className="submit-button" onClick={this.handleSubmit}>Submit</div>}
 
   handleSubmit(){
+    console.log(this.props);
     this.props.dataRepository.getHashtagData(this.getSubmitPayload());
     this.setState({inputs: ["", "", ""]});
   }
