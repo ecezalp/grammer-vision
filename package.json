@@ -9,7 +9,8 @@
     "node-sass": "^4.9.0",
     "prop-types": "^15.6.1",
     "query-string": "^6.1.0",
-    "react-cookie": "^2.1.6"
+    "react-cookie": "^2.1.6",
+    "react-redux": "^5.0.7"
   },
   "devDependencies": {
     "axios": "^0.18.0",

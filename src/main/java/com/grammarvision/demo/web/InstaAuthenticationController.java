@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.logging.Logger;
 
 @RestController
 @RequestMapping("/api")
@@ -20,17 +20,16 @@ public class InstaAuthenticationController {
   @Autowired
   InstagramService instagramService;
 
-  private Logger logger;
-
   @RequestMapping(method = RequestMethod.GET, value = "/authentication")
   public String query() throws IOException {
     return instagramService.getAuthorizationUrl();
   }
 
   @RequestMapping(method = RequestMethod.GET, value = "/callback")
-  public void token(@RequestParam String code, HttpServletResponse response) throws IOException {
+  public void token(@RequestParam String code, HttpServletResponse response, HttpSession session) throws IOException {
     Verifier verifier = new Verifier(code);
     Token token = instagramService.getAccessToken(verifier);
+    session.setAttribute("grammar-vision", token.getToken());
     response.sendRedirect("http://localhost:8080/token?tokenString=" + token.getToken());
   }
 }

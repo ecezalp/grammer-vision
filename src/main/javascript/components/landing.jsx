@@ -26,7 +26,7 @@ export default class Landing extends React.Component {
     </div>;
   }
 
-  getInput(label, placeHolder, index){
+  getInput(label, placeHolder, index) {
     return <div className="solo-input-container" key={`landing-input-${index}`}>
       <div className="solo-input-title">{label}</div>
       <input className="landing-input"
@@ -43,15 +43,16 @@ export default class Landing extends React.Component {
     this.setState({inputs});
   }
 
-  submitButton(){return <div className="submit-button" onClick={this.handleSubmit}>Submit</div>}
+  submitButton() {
+    return <div className="submit-button" onClick={this.handleSubmit}>Submit</div>
+  }
 
-  handleSubmit(){
-    console.log(this.props);
+  handleSubmit() {
     this.props.dataRepository.getHashtagData(this.getSubmitPayload());
     this.setState({inputs: ["", "", ""]});
   }
 
-  getSubmitPayload(){
+  getSubmitPayload() {
     let payload = {};
     payload["name"] = this.state.inputs[0];
     payload["picCount"] = this.state.inputs[1];
@@ -59,7 +60,7 @@ export default class Landing extends React.Component {
     return payload;
   }
 
-  landingOptions(){
+  landingOptions() {
     let options = ["about", "credits", "contact"];
     let optionDivs = options.map((option, i) =>
       <div className="landing-option"
