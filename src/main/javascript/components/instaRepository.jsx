@@ -13,16 +13,18 @@ export default class InstaRepository {
       });
   }
 
-  getHashtagData(hashTag) {
+  getHashtagData(hashTag, successCb) {
     let item = window.localStorage.getItem("grammer_vision");
     if (!this.isItemDefined(item)) return this.authenticate();
-    return this.getPicUrlsFromInsta(item, this.uploadToBucket);
+    return this.getPicUrlsFromInsta(item, pictures => this.uploadToBucket(pictures, successCb));
   }
 
   getPicUrlsFromInsta(item, callback) {
+    console.log("get pic urls from instpo")
     axios.get(`https://api.instagram.com/v1/users/self/media/recent?access_token=${item}`)
       .then(function (response) {
         let pictures = response.data.data.map(entry => Object.assign({}, {pictureId: entry.id}, {pictureUrl: entry.images.standard_resolution.url}));
+        console.log("about to call upload")
         return callback(pictures);
       })
       .catch(function (error) {
@@ -35,7 +37,7 @@ export default class InstaRepository {
     return !(item === "" || item === null || item === "undefined" || typeof item === "undefined" || item === undefined);
   }
 
-  uploadToBucket(pictures) {
+  uploadToBucket(pictures, successCb) {
     console.log(JSON.stringify(pictures));
     return axios.post(`/api/pictures`, JSON.stringify(pictures), {
       headers: {
@@ -43,8 +45,7 @@ export default class InstaRepository {
       }
     })
       .then(function (response) {
-        debugger;
-        return response.data;
+        return successCb(response);
       })
       .catch(function (error) {
         console.log(error);

@@ -109,7 +109,7 @@ gulp.task('build', function () {
   return gulp.src(GLOBS.js_jsx)
     .pipe(webpackStream(_.merge({}, WEBPACK_BUILD_CONFIG, {devtool: 'inline-source-map'})))
     .pipe(webpackStream(WEBPACK_STYLE_CONFIG))
-    .pipe(gulp.dest(BUILD_PATH))
+    .pipe(gulp.dest(WATCH_PATH))
 });
 
 gulp.task('watch', ['watchStyle', 'watchCode']);

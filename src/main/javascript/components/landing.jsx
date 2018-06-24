@@ -1,4 +1,5 @@
 import React from 'react';
+import PicturesViewer from './picturesViewer';
 
 export default class Landing extends React.Component {
 
@@ -6,6 +7,7 @@ export default class Landing extends React.Component {
     super(props);
     this.state = {
       inputs: ['', '', ''],
+      picturesResponse: [],
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -48,7 +50,8 @@ export default class Landing extends React.Component {
   }
 
   handleSubmit() {
-    this.props.dataRepository.getHashtagData(this.getSubmitPayload());
+    let successCb = response => this.setState({picturesResponse: response.data});
+    this.props.dataRepository.getHashtagData(this.getSubmitPayload(), successCb);
     this.setState({inputs: ["", "", ""]});
   }
 
@@ -71,10 +74,13 @@ export default class Landing extends React.Component {
   }
 
   render() {
-    return <div className="landing-container">
-      {this.landingTitle()}
-      {this.landingForm()}
-      {this.landingOptions()}
-    </div>;
+    console.log(this.state.picturesResponse);
+    return this.state.picturesResponse.length < 1 ?
+      <div className="landing-container">
+        {this.landingTitle()}
+        {this.landingForm()}
+        {this.landingOptions()}
+      </div> :
+      <PicturesViewer pictures={this.state.picturesResponse}/>
   }
 }
