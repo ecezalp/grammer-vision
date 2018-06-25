@@ -1,8 +1,15 @@
 package com.grammarvision.demo.domain.service;
 
-import com.google.cloud.vision.v1.*;
+import com.google.cloud.vision.v1.ImageAnnotatorClient;
+import com.google.cloud.vision.v1.AnnotateImageRequest;
+import com.google.cloud.vision.v1.AnnotateImageResponse;
+import com.google.cloud.vision.v1.BatchAnnotateImagesResponse;
+import com.google.cloud.vision.v1.EntityAnnotation;
+import com.google.cloud.vision.v1.Feature;
+import com.google.cloud.vision.v1.Image;
 import com.google.protobuf.ByteString;
 import com.google.protobuf.Descriptors;
+import com.grammarvision.demo.domain.Picture;
 import org.springframework.stereotype.Service;
 
 import java.io.ByteArrayOutputStream;
@@ -15,20 +22,20 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static java.util.Collections.singletonList;
+import static java.util.stream.Collectors.toList;
+
 @Service
 public class LoadingService {
 
-  private ImageAnnotatorClient vision;
 
-  {
-    try {
-      vision = ImageAnnotatorClient.create();
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
+  public List<HashMap<String, String>> getAllAnnotations(List<Picture> pictures) {
+    List<byte[]> bytes = pictures.stream().map(picture -> getBytesFromUrl(picture.getPictureUrl())).collect(toList());
+    List<BatchAnnotateImagesResponse> responses = bytes.stream().map(this::getImageResponseFromBytes).collect(toList());
+    return singletonList(getAnnotations(responses.get(0).getResponses(0)));
   }
 
-  public HashMap<String, String> getAnnotations (AnnotateImageResponse response){
+  public HashMap<String, String> getAnnotations(AnnotateImageResponse response) {
     HashMap<String, String> annotations = new HashMap<>();
     for (EntityAnnotation annotation : response.getLabelAnnotationsList()) {
       for (Map.Entry<Descriptors.FieldDescriptor, Object> entry : annotation.getAllFields().entrySet()) {
@@ -39,7 +46,7 @@ public class LoadingService {
     return annotations;
   }
 
-  public void printErrors(List<AnnotateImageResponse> responses){
+  public void printErrors(List<AnnotateImageResponse> responses) {
     for (AnnotateImageResponse res : responses) {
       if (res.hasError()) {
         System.out.printf("Error: %s\n", res.getError().getMessage());
@@ -48,12 +55,19 @@ public class LoadingService {
     }
   }
 
-  public List<AnnotateImageResponse> getImageResponseFromBytes(byte[] bytes) {
+  public BatchAnnotateImagesResponse getImageResponseFromBytes(byte[] bytes) {
+
+    ImageAnnotatorClient vision = null;
+
+    try {
+      vision = ImageAnnotatorClient.create();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+
     ByteString imgBytes = ByteString.copyFrom(bytes);
     List<AnnotateImageRequest> request = getImageRequestFromString(imgBytes);
-    BatchAnnotateImagesResponse response = vision.batchAnnotateImages(request);
-    List<AnnotateImageResponse> responses = response.getResponsesList();
-    return responses;
+    return vision.batchAnnotateImages(request);
   }
 
   private List<AnnotateImageRequest> getImageRequestFromString(ByteString byteString) {
