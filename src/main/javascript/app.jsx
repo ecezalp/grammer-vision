@@ -8,6 +8,7 @@ import {BrowserRouter, Route} from "react-router-dom";
 import "../styles/main.scss";
 
 import LandingContainer from "./containers/landingContainer";
+import RedirectContainer from "./containers/redirectContainer";
 
 import Landing from "./components/landing";
 import InstaRepository from "./components/instaRepository";
@@ -19,6 +20,8 @@ export default function App() {
   const store = createStore(rootReducer, applyMiddleware(thunk));
 
   const landing = () => <LandingContainer/>;
+
+  const redirect = () => <RedirectContainer><LandingContainer/></RedirectContainer>;
 
   // const landing = (props) => <Landing
   //   dataRepository={getDataRepoWithToken(qs.parse(props.location.search).tokenString)}/>;
@@ -33,7 +36,7 @@ export default function App() {
       <BrowserRouter>
         <div className="app-container">
           <Route exact path="/" component={landing}/>
-          <Route path="/token" component={landing}/>
+          <Route path="/token" component={redirect}/>
         </div>
       </BrowserRouter>
     </MuiThemeProvider>

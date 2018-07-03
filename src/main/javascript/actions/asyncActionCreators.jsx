@@ -1,13 +1,15 @@
 import axios from 'axios';
-import {browserHistory} from 'react-router-dom';
+import {history} from 'history';
 
-import {getTokenUrlSuccess, getTokenUrlFailure, setFetchingTokenFalse, setFetchingTokenTrue} from "./actionCreators";
+import {getTokenUrlFailure, setFetchingTokenFalse, setFetchingTokenTrue} from "./actionCreators";
+import {setWindowLocation, persistStateOnLocalStorage} from "./windowActions";
 
 export const getTokenUrlRequest = (dispatch) => {
   dispatch(setFetchingTokenTrue());
   return axios.get(`/api/authentication`)
     .then(response => {
-      window.location.href = response.data;
+      persistStateOnLocalStorage();
+      setWindowLocation(response.data);
     })
     .catch(error => {
       dispatch(getTokenUrlFailure(error.data));
