@@ -1,5 +1,5 @@
 import React from 'react';
-import PicturesViewer from './picturesViewer';
+import PicturesViewer from './presentationals/picturesViewer';
 
 export default class Landing extends React.Component {
 

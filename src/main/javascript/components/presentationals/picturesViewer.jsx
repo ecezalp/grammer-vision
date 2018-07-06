@@ -2,9 +2,9 @@ import React from 'react';
 
 export default function PicturesViewer({pictures}) {
 
-  const getPicture = (picture, index) => {
-    return <div className="picture-container" key={index}>
-      <img src={`data:image/png;base64,${picture}`}/>
+  const getPicture = (picture) => {
+    return <div className="picture-container" key={picture.id}>
+      <img src={picture.url}/>
     </div>;
   };
 

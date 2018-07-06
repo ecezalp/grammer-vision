@@ -13,3 +13,8 @@ export const readStateOnLocalStorage = () => {
 };
 
 export const setWindowLocation = location => window.location.href = location;
+
+export const isStorageDirty = () => {
+  let storageState = readStateOnLocalStorage();
+  return !(storageState === "undefined" || typeof storageState === "undefined" || storageState === null);
+};
