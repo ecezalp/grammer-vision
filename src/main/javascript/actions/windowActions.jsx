@@ -1,8 +1,15 @@
+export const persistStateOnLocalStorage = state => {
+  console.log(state);
+  window.localStorage.setItem("grammar-vision-state", JSON.stringify(Object.assign({}, state)));
+};
 
-export const persistStateOnLocalStorage = state => window.localStorage.setItem("grammar-vision-state", JSON.stringify(state));
+export const cleanStateOnLocalStorage = () => {
+  window.localStorage.setItem("grammar-vision-state", undefined);
+};
 
-export const cleanStateOnLocalStorage = () => window.localStorage.setItem("grammar-vision-state", undefined);
-
-export const readStateOnLocalStorage = () => JSON.parse(window.localStorage.getItem("grammar-vision-state"));
+export const readStateOnLocalStorage = () => {
+  let item = window.localStorage.getItem("grammar-vision-state");
+  if (item !== "undefined") return JSON.parse(item);
+};
 
 export const setWindowLocation = location => window.location.href = location;

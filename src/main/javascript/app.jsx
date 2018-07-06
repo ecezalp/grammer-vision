@@ -1,6 +1,6 @@
 import React from 'react';
 import {Provider} from 'react-redux';
-import {createStore, applyMiddleware} from 'redux';
+import {applyMiddleware, createStore} from 'redux';
 import thunk from 'redux-thunk';
 import {MuiThemeProvider} from "material-ui";
 import {BrowserRouter, Route} from "react-router-dom";
@@ -8,12 +8,8 @@ import {BrowserRouter, Route} from "react-router-dom";
 import "../styles/main.scss";
 
 import LandingContainer from "./containers/landingContainer";
-import RedirectContainer from "./containers/redirectContainer";
-
-import Landing from "./components/landing";
-import InstaRepository from "./components/instaRepository";
-import * as qs from 'query-string';
 import rootReducer from './reducers/index';
+import ReduxRedirect from "./components/reduxRedirect";
 
 export default function App() {
 
@@ -21,15 +17,7 @@ export default function App() {
 
   const landing = () => <LandingContainer/>;
 
-  const redirect = () => <RedirectContainer><LandingContainer/></RedirectContainer>;
-
-  // const landing = (props) => <Landing
-  //   dataRepository={getDataRepoWithToken(qs.parse(props.location.search).tokenString)}/>;
-
-  // const getDataRepoWithToken = (tokenString) => {
-  //   window.localStorage.setItem("grammer_vision", tokenString);
-  //   return new InstaRepository();
-  // };
+  const redirect = ({history}) => <ReduxRedirect history={history}/>;
 
   return <Provider store={store}>
     <MuiThemeProvider>

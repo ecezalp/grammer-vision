@@ -1,15 +1,4 @@
-export default function ReduxRedirect({
-                                        setInputStateFromLocalstorage,
-                                        setTokenStateFromLocalstorage,
-                                        readStateOnLocalStorage,
-                                        cleanStateOnLocalStorage,
-                                        children
-                                      }) {
-
-  const {input, token} = readStateOnLocalStorage();;
-  setInputStateFromLocalstorage(input);
-  setTokenStateFromLocalstorage(token);
-  cleanStateOnLocalStorage();
-
-  return children;
+export default function ReduxRedirect({history}) {
+  history.push('/');
+  return null;
 }

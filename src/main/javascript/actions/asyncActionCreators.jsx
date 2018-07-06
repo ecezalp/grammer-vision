@@ -4,11 +4,11 @@ import {history} from 'history';
 import {getTokenUrlFailure, setFetchingTokenFalse, setFetchingTokenTrue} from "./actionCreators";
 import {setWindowLocation, persistStateOnLocalStorage} from "./windowActions";
 
-export const getTokenUrlRequest = (dispatch) => {
+export const getTokenUrlRequest = (dispatch, state) => {
   dispatch(setFetchingTokenTrue());
   return axios.get(`/api/authentication`)
     .then(response => {
-      persistStateOnLocalStorage();
+      persistStateOnLocalStorage(state);
       setWindowLocation(response.data);
     })
     .catch(error => {

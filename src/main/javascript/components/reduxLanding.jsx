@@ -3,6 +3,8 @@ import Spinner from 'react-spinkit';
 
 export default function ReduxLanding(props) {
 
+  props.setStateFromLocalStorage();
+
   const {tokenString, isFetchingToken, getInstaToken, setInputValue} = props;
 
   const spinner = isFetchingToken && <Spinner name="wave"/>;
@@ -10,6 +12,18 @@ export default function ReduxLanding(props) {
   const landingTitle = <div className="landing-title">
     what do you really see?
   </div>;
+
+  const handleSubmitClick = ({tokenString, isFetchingToken, tagName, pictureCount, visionTagCount}) => {
+    if (tokenString === "") {
+      getInstaToken({
+        tokenString,
+        isFetchingToken,
+        tagName,
+        pictureCount,
+        visionTagCount,
+      })
+    }
+  };
 
   const inputHelper = [
     {label: "instagram tag", placeholder: "#", type: "tagName"},
@@ -32,7 +46,7 @@ export default function ReduxLanding(props) {
   const getOption = (option, index) =>
     <div className="landing-option" key={`landing-option-${index}`}>{option}</div>;
 
-  const submitButton = <div className="submit-button" onClick={tokenString === "" && getInstaToken}>Submit</div>;
+  const submitButton = <div className="submit-button" onClick={() => handleSubmitClick(props)}>Submit</div>;
 
   const landingForm = <div className="landing-form">
     {inputHelper.map(getInput)}
