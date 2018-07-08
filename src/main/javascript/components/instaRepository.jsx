@@ -20,11 +20,9 @@ export default class InstaRepository {
   }
 
   getPicUrlsFromInsta(item, callback) {
-    console.log("get pic urls from instpo")
     axios.get(`https://api.instagram.com/v1/users/self/media/recent?access_token=${item}`)
       .then(function (response) {
         let pictures = response.data.data.map(entry => Object.assign({}, {pictureId: entry.id}, {pictureUrl: entry.images.standard_resolution.url}));
-        console.log("about to call upload")
         return callback(pictures);
       })
       .catch(function (error) {
@@ -38,7 +36,6 @@ export default class InstaRepository {
   }
 
   uploadToBucket(pictures, successCb) {
-    console.log(JSON.stringify(pictures));
     return axios.post(`/api/pictures`, JSON.stringify(pictures), {
       headers: {
         'Content-Type': 'application/json',

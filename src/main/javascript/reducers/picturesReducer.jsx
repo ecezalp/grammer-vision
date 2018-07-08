@@ -11,7 +11,7 @@ const initialState = {
 };
 
 const handleSetVisionTags = (state, payload) => {
-  state.pictures[state.activePictureIndex].tags = [payload];
+  state.pictures[state.activePictureIndex].tags = payload;
   return state;
 };
 

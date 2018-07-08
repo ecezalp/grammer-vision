@@ -32,7 +32,7 @@ export const setFetchingPicturesFalse = () => ({
 
 export const setVisionTags = (tags) => ({
   type: constants.SET_VISION_TAGS,
-  payload: processTags(tags),
+  payload: tags,
 });
 
 export const setPicturesFromInsta = (rawPictures) => ({

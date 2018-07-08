@@ -5,7 +5,6 @@ export default function ReduxLanding(props) {
 
   props.setStateFromLocalStorage();
 
-  console.log(props);
   const {tokenString, isFetchingToken, getInstaToken, setInputValue} = props;
 
   const spinner = isFetchingToken && <Spinner name="wave"/>;

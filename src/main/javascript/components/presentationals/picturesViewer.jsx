@@ -1,16 +1,14 @@
 import React from 'react';
 import Spinner from 'react-spinkit';
 
-export default function PicturesViewer(props) {
-
-  let {
-    pictures,
-    activePictureIndex,
-    isFetchingPictures,
-    isFetchingTags,
-    setActivePictureIndex,
-    getPictureTags
-  } = props;
+export default function PicturesViewer({
+                                         pictures,
+                                         activePictureIndex,
+                                         isFetchingPictures,
+                                         isFetchingTags,
+                                         setActivePictureIndex,
+                                         getPictureTags
+                                       }) {
 
   const isFetching = (isFetchingPictures || isFetchingTags);
 
@@ -40,11 +38,17 @@ export default function PicturesViewer(props) {
 
   const spinner = <div className="spinner-container"><Spinner name="wave"/></div>;
 
-  const tags = <div className="tags">{picture.tags.map((tag, i) => <div key={i} className="tag-container">{tag}</div>)}</div>;
+  const getTag = (tag, i) => {
+    console.log(tag, i);
+    return <div key={i} className="tag-container">
+      <div className="tag-name-container">{tag.name}</div>
+      <div className="tag-score-container">{tag.score} %</div>
+    </div>
+  };
+
+  const tags = <div className="tags">{picture.tags.map(getTag)}</div>;
 
   const tagsOrSpinner = isFetching ? spinner : tags;
-
-  console.log(props);
 
   return <div className="pictures-viewer-container">
     {button("decrement")}

@@ -10,6 +10,7 @@ import com.google.cloud.vision.v1.ImageAnnotatorClient;
 import com.google.protobuf.ByteString;
 import com.google.protobuf.Descriptors;
 import com.grammarvision.demo.domain.Picture;
+import com.grammarvision.demo.domain.TagResponse;
 import org.springframework.stereotype.Service;
 
 import java.io.ByteArrayOutputStream;
@@ -17,6 +18,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,23 +29,31 @@ import static java.util.stream.Collectors.toList;
 @Service
 public class LoadingService {
 
-  public HashMap<String, String> getPictureWithAnnotations(Picture taglessPicture) throws IOException {
+  public List<TagResponse> getPictureWithAnnotations(Picture taglessPicture) throws IOException {
     final ImageAnnotatorClient vision = ImageAnnotatorClient.create();
     byte[] bytes = getBytesFromUrl(taglessPicture.getUrl());
     BatchAnnotateImagesResponse response = getImageResponseFromBytes(vision, bytes);
-    HashMap<String, String> annotations = getAnnotations(response.getResponses(0));
-    return annotations;
+    return getAnnotations(response.getResponsesList());
   }
 
 
-//  public List<HashMap<String, String>> getAllAnnotations(List<Picture> pictures) throws IOException {
-//    final ImageAnnotatorClient vision = ImageAnnotatorClient.create();
-//    List<byte[]> bytes = pictures.stream().map(picture -> getBytesFromUrl(picture.getPictureUrl())).collect(toList());
-//    List<BatchAnnotateImagesResponse> responses = bytes.stream().map(imgBytes -> getImageResponseFromBytes(vision, imgBytes)).collect(toList());
-//    return singletonList(getAnnotations(responses.get(0).getResponses(0)));
-//  }
+  public List<TagResponse> getAnnotations(List<AnnotateImageResponse> responses) {
+    List<List<EntityAnnotation>> test = responses.stream().map(response -> response.getLabelAnnotationsList()).collect(toList());
+    List<TagResponse> tagList = new ArrayList<>();
 
-  public HashMap<String, String> getAnnotations(AnnotateImageResponse response) {
+    for (List<EntityAnnotation> annotations : test) {
+      for (EntityAnnotation annotation : annotations) {
+        TagResponse tagResponse = TagResponse.builder()
+          .score(String.valueOf(annotation.getScore()))
+          .name(annotation.getDescription())
+          .build();
+        tagList.add(tagResponse);
+      }
+    }
+    return tagList;
+  }
+
+  public HashMap<String, String> getSingleAnnotation(AnnotateImageResponse response) {
     HashMap<String, String> annotations = new HashMap<>();
     for (EntityAnnotation annotation : response.getLabelAnnotationsList()) {
       for (Map.Entry<Descriptors.FieldDescriptor, Object> entry : annotation.getAllFields().entrySet()) {
@@ -51,6 +61,10 @@ public class LoadingService {
         annotations.put(entry.getKey().toString(), entry.getValue().toString());
       }
     }
+
+    System.out.println("3333333333333333333");
+    System.out.println(annotations);
+    System.out.println("3333333333333333333");
     return annotations;
   }
 
