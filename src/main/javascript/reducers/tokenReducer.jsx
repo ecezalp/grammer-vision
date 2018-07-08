@@ -4,7 +4,11 @@ import {
   SET_TOKEN_STATE_FROM_LOCALSTORAGE
 } from '../actions/actionConstants';
 
-const initialState = {url: "", tokenString: "", isFetchingToken: false};
+const initialState = {
+  url: "",
+  tokenString: "",
+  isFetchingToken: false
+};
 
 const token = (state = initialState, action) => {
   switch (action.type) {

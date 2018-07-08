@@ -48,5 +48,26 @@
       justify-content: space-evenly;
     }
   }
+
+  .pictures-viewer-container {
+    display: flex;
+    justify-content: center;
+
+    .spinner-container, .tags {
+      width: 10vw;
+      background-color: aliceblue;
+    }
+
+    .button-increment, .button-decrement {
+      display: flex;
+      align-items: center;
+      font-size: 2em;
+      padding: 10px;
+
+      i {
+        cursor: pointer;
+      }
+    }
+  }
 }
 

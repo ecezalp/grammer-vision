@@ -5,11 +5,19 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class Picture {
-  private String pictureId;
-  private String pictureUrl;
+  private String id;
+  private String url;
+  private List<String> tags;
+
+  public static class PictureBuilder {
+    private List<String> tags = new ArrayList<>();
+  }
 }

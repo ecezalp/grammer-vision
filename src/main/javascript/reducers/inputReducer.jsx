@@ -1,6 +1,10 @@
 import {SET_INPUT_STATE_FROM_LOCALSTORAGE, SET_INPUT_VALUE} from '../actions/actionConstants';
 
-const initialState = {tagName: "", pictureCount: "", visionTagCount: ""};
+const initialState = {
+  tagName: "",
+  pictureCount: "",
+  visionTagCount: ""
+};
 
 const handleSetInputValue = (state, action) => {
   let newState = Object.assign({}, state);

@@ -22,9 +22,9 @@ public class PicturesController {
   @Autowired
   LoadingService loadingService;
 
-  @RequestMapping(method = RequestMethod.POST, value = "/pictures")
-  public List<HashMap<String, String>> findPic(@RequestBody String picturesJson) throws Exception {
-    List<Picture> pictures = pictureService.getPicturesFromJson(picturesJson);
-    return loadingService.getAllAnnotations(pictures);
+  @RequestMapping(method = RequestMethod.POST, value = "/tags")
+  public HashMap<String,String> findPic(@RequestBody String pictureJson) throws Exception {
+    Picture picture = pictureService.getPictureFromJson(pictureJson);
+    return loadingService.getPictureWithAnnotations(picture);
   }
 }

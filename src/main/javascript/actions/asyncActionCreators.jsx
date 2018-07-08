@@ -21,9 +21,23 @@ export const getPictureUrls = (dispatch, token, handleSuccess) => {
   return axios.get(`https://api.instagram.com/v1/users/self/media/recent?access_token=${token}`)
     .then(response => {
       dispatch(actions.setPicturesFromInsta(response.data));
+      dispatch(actions.setFetchingPicturesFalse());
       handleSuccess();
     })
     .catch(() => {
       dispatch(actions.setFetchingPicturesFalse());
+    });
+};
+
+
+export const getPictureTags = (dispatch, picture) => {
+  dispatch(actions.setFetchingTagsTrue());
+  return axios.post(`/api/tags`, picture)
+    .then(response => {
+      dispatch(actions.setVisionTags(response.data));
+      dispatch(actions.setFetchingTagsFalse());
+    })
+    .catch(() => {
+      dispatch(actions.setFetchingTagsFalse());
     });
 };
