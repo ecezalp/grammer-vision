@@ -1,5 +1,5 @@
 import {connect} from 'react-redux'
-import PicturesViewer from "../presentationals/picturesViewer";
+import Pictures from "../presentationals/pictures";
 import {
   setActivePictureIndex
 } from "../../actions/actionCreators";
@@ -16,4 +16,4 @@ const mapDispatchToProps = (dispatch) => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(PicturesViewer);
+)(Pictures);

@@ -1,5 +1,4 @@
 export const persistStateOnLocalStorage = state => {
-  console.log(state);
   window.localStorage.setItem("grammar-vision-state", JSON.stringify(Object.assign({}, state)));
 };
 

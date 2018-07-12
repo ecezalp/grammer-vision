@@ -8,13 +8,36 @@
 
   .landing-container {
     background-color: aliceblue;
-    font-family: monospace;
-    height: 60%;
+    font-family: Lato, Helvetica;
+    height: 100%;
     width: 50%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
+
+    .landing-title {
+      display: flex;
+      flex-direction: column;
+      font-weight: bold;
+
+      .headline-container {
+        display: flex;
+        align-items: baseline;
+
+        .title-1 {
+          font-size: 2em;
+        }
+
+        .title-2 {
+          padding: 0 1rem;
+        }
+      }
+
+      .byline-container {
+        font-size: 5em;
+      }
+    }
 
     .landing-form {
       display: flex;
@@ -25,6 +48,7 @@
       .solo-input-container {
         display: flex;
         justify-content: flex-end;
+        padding: 1vh 0;
 
         .landing-input {
           margin-left: 10px;
@@ -36,9 +60,11 @@
       }
 
       .submit-button {
-        text-align: right;
+        text-align: center;
         cursor: pointer;
-        margin-top: 10px;
+        margin-top: 1vh;
+        max-width: 52px;
+        align-self: flex-end;
       }
     }
 

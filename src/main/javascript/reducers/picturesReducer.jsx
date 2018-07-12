@@ -18,7 +18,6 @@ const handleSetVisionTags = (state, payload) => {
 const pictures = (state = initialState, action) => {
   switch (action.type) {
     case SET_VISION_TAGS:
-      debugger;
       return handleSetVisionTags(state, action.payload);
     case SET_FETCHING_PICTURES_TRUE:
       return Object.assign({}, state, {isFetchingPictures: true});

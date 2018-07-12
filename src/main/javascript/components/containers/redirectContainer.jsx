@@ -1,7 +1,7 @@
 import {connect} from 'react-redux';
 import {setInputStateFromLocalstorage, setTokenStateFromLocalstorage} from "../../actions/actionCreators";
 import {getPictureUrls} from "../../actions/asyncActionCreators";
-import ReduxRedirect from '../presentationals/reduxRedirect'
+import Redirect from '../functionals/redirect'
 import {readStateOnLocalStorage, isStorageDirty} from "../../actions/windowActions";
 
 const setStateFromLocalStorage = (dispatch, token) => {
@@ -20,4 +20,4 @@ const mapDispatchToProps = (dispatch) => ({
 export default connect(
   null,
   mapDispatchToProps,
-)(ReduxRedirect);
+)(Redirect);

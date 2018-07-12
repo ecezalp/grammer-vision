@@ -3,9 +3,10 @@ import {getTokenUrlRequest} from '../../actions/asyncActionCreators'
 import {
   setInputValue,
   setInputStateFromLocalstorage,
-  setTokenStateFromLocalstorage
+  setTokenStateFromLocalstorage,
+  toggleActiveInputField,
 } from "../../actions/actionCreators";
-import ReduxLanding from '../presentationals/reduxLanding'
+import Landing from '../presentationals/landing'
 import {cleanStateOnLocalStorage, readStateOnLocalStorage} from "../../actions/windowActions";
 
 const setStateFromLocalStorage = (dispatch) => {
@@ -17,15 +18,16 @@ const setStateFromLocalStorage = (dispatch) => {
   }
 };
 
-const mapStateToProps = state => Object.assign({}, state.token, state.input);
+const mapStateToProps = state => Object.assign({}, state.token, {input: state.input});
 
 const mapDispatchToProps = (dispatch) => ({
   getInstaToken: (state) => getTokenUrlRequest(dispatch, state),
   setInputValue: (event, data) => dispatch(setInputValue(event, data)),
   setStateFromLocalStorage: () => setStateFromLocalStorage(dispatch),
+  toggleActiveInputField: () => dispatch(toggleActiveInputField())
 });
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(ReduxLanding);
+)(Landing);

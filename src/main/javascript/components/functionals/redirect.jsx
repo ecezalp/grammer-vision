@@ -1,7 +1,7 @@
 import React from 'react';
 import {cleanStateOnLocalStorage, readStateOnLocalStorage} from "../../actions/windowActions";
 
-export default function ReduxRedirect({getPictureUrls, history, setStateFromLocalStorage, token}) {
+export default function Redirect({getPictureUrls, history, setStateFromLocalStorage, token}) {
 
   const cleanAndNavigate = () => {
     cleanStateOnLocalStorage();

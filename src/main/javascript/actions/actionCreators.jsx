@@ -1,62 +1,82 @@
-import * as constants from "./actionConstants";
+import {} from "./actionConstants";
 import {processPictures, processTags} from './actionHelpers'
+import {
+  GET_TOKEN_URL_FAILURE,
+  SET_TOKEN_STATE_FROM_LOCALSTORAGE,
+  SET_FETCHING_TOKEN_TRUE,
+  SET_FETCHING_TOKEN_FALSE,
+  SET_FETCHING_TAGS_FALSE,
+  SET_FETCHING_PICTURES_TRUE,
+  SET_FETCHING_TAGS_TRUE,
+  SET_VISION_TAGS,
+  TOGGLE_ACTIVE_INPUT_FIELD,
+  SET_PICTURES_FROM_INSTA,
+  SET_ACTIVE_PICTURE_INDEX,
+  SET_INPUT_VALUE,
+  SET_INPUT_STATE_FROM_LOCALSTORAGE,
+} from "./actionConstants";
+import {} from "./actionConstants";
 
 export const getTokenUrlFailure = error => ({
-  type: constants.GET_TOKEN_URL_FAILURE,
+  type: GET_TOKEN_URL_FAILURE,
   payload: error,
 });
 
 export const setFetchingTokenTrue = () => ({
-  type: constants.SET_FETCHING_TOKEN_TRUE,
+  type: SET_FETCHING_TOKEN_TRUE,
 });
 
 export const setFetchingTokenFalse = () => ({
-  type: constants.SET_FETCHING_TOKEN_FALSE,
+  type: SET_FETCHING_TOKEN_FALSE,
 });
 
 export const setFetchingTagsTrue = () => ({
-  type: constants.SET_FETCHING_TAGS_TRUE,
+  type: SET_FETCHING_TAGS_TRUE,
 });
 
 export const setFetchingTagsFalse = () => ({
-  type: constants.SET_FETCHING_TAGS_FALSE,
+  type: SET_FETCHING_TAGS_FALSE,
 });
 
 export const setFetchingPicturesTrue = () => ({
-  type: constants.SET_FETCHING_PICTURES_TRUE,
+  type: SET_FETCHING_PICTURES_TRUE,
 });
 
 export const setFetchingPicturesFalse = () => ({
-  type: constants.SET_FETCHING_PICTURES_FALSE,
+  type: SET_FETCHING_TAGS_TRUE,
 });
 
 export const setVisionTags = (tags) => ({
-  type: constants.SET_VISION_TAGS,
+  type: SET_VISION_TAGS,
   payload: tags,
 });
 
+export const toggleActiveInputField = () => ({
+  type: TOGGLE_ACTIVE_INPUT_FIELD,
+});
+
 export const setPicturesFromInsta = (rawPictures) => ({
-  type: constants.SET_PICTURES_FROM_INSTA,
+  type: SET_PICTURES_FROM_INSTA,
   payload: processPictures(rawPictures),
 });
 
 export const setActivePictureIndex = (newIndex) => ({
-  type: constants.SET_ACTIVE_PICTURE_INDEX,
+  type: SET_ACTIVE_PICTURE_INDEX,
   payload: newIndex,
 });
 
-export const setInputValue = (event, inputType) => ({
-  type: constants.SET_INPUT_VALUE,
+export const setInputValue = (event, inputLabel) => ({
+  type: SET_INPUT_VALUE,
   payload: event.target.value,
-  data: inputType,
+  data: inputLabel,
 });
 
 export const setInputStateFromLocalstorage = (state) => ({
-  type: constants.SET_INPUT_STATE_FROM_LOCALSTORAGE,
+  type: SET_INPUT_STATE_FROM_LOCALSTORAGE,
   payload: state,
 });
 
 export const setTokenStateFromLocalstorage = (state) => ({
-  type: constants.SET_TOKEN_STATE_FROM_LOCALSTORAGE,
+  type: SET_TOKEN_STATE_FROM_LOCALSTORAGE,
   payload: state,
 });

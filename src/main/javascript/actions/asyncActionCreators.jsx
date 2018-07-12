@@ -29,7 +29,6 @@ export const getPictureUrls = (dispatch, token, handleSuccess) => {
     });
 };
 
-
 export const getPictureTags = (dispatch, picture) => {
   dispatch(actions.setFetchingTagsTrue());
   return axios.post(`/api/tags`, picture)
