@@ -27,9 +27,6 @@ export default function Landing(props) {
     }
   };
 
-  const landingOptionsHelper = ["about", "credits", "contact"];
-
-
   const getInput = (input, index) =>
     <div className="solo-input-container" key={`landing-input-${index}`}>
       <input type="radio"

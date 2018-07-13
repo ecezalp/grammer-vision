@@ -5,10 +5,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  font-family: Lato, Helvetica;
 
   .landing-container {
     background-color: aliceblue;
-    font-family: Lato, Helvetica;
     height: 100%;
     width: 50%;
     display: flex;
@@ -80,8 +80,15 @@
     justify-content: center;
 
     .spinner-container, .tags {
-      width: 10vw;
+      width: 16vw;
       background-color: aliceblue;
+
+      .tag-container {
+        display: flex;
+        flex-direction: column;
+        padding: 1.5vh;
+        text-transform: uppercase;
+      }
     }
 
     .button-increment, .button-decrement {

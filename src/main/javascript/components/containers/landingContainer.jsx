@@ -11,8 +11,8 @@ import {cleanStateOnLocalStorage, readStateOnLocalStorage} from "../../actions/w
 
 const setStateFromLocalStorage = (dispatch) => {
   if (readStateOnLocalStorage() !== undefined) {
-    let {tokenString, isFetchingToken, tagName, pictureCount, visionTagCount} = readStateOnLocalStorage();
-    dispatch(setInputStateFromLocalstorage(Object.assign({}, {tagName, pictureCount, visionTagCount})));
+    let {tokenString, isFetchingToken, input} = readStateOnLocalStorage();
+    dispatch(setInputStateFromLocalstorage(Object.assign({}, input)));
     dispatch(setTokenStateFromLocalstorage(Object.assign({}, {tokenString, isFetchingToken})));
     cleanStateOnLocalStorage();
   }

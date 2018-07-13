@@ -6,8 +6,8 @@ import {readStateOnLocalStorage, isStorageDirty} from "../../actions/windowActio
 
 const setStateFromLocalStorage = (dispatch, token) => {
   if (isStorageDirty) {
-    let {isFetchingToken, tagName, pictureCount, visionTagCount} = readStateOnLocalStorage();
-    dispatch(setInputStateFromLocalstorage(Object.assign({}, {tagName, pictureCount, visionTagCount})));
+    let {isFetchingToken, input} = readStateOnLocalStorage();
+    dispatch(setInputStateFromLocalstorage(Object.assign({}, input)));
     dispatch(setTokenStateFromLocalstorage(Object.assign({}, {isFetchingToken, token})));
   }
 };

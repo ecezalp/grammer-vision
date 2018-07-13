@@ -19,9 +19,7 @@ export default function Pictures({
   }
 
   const isIncrement = (action, activePictureIndex, maxLength) => {
-    return arguments.length === 1 ?
-      (action === "increment") :
-      (action === "increment" && activePictureIndex < maxLength);
+    return (action === "increment" && activePictureIndex < maxLength);
   };
 
   const isDecrement = (action, activePictureIndex, minLength) => {
@@ -37,7 +35,7 @@ export default function Pictures({
   const handleButtonClick = (action) => setActivePictureIndex(getUpdatedIndex(action));
 
   const getIcon = (action) => {
-    return isIncrement(action) ?
+    return action === "increment" ?
       <i className="fas fa-arrow-right"/> :
       <i className="fas fa-arrow-left"/>
   };
@@ -57,7 +55,7 @@ export default function Pictures({
   const getTag = (tag, i) => {
     return <div key={i} className="tag-container">
       <div className="tag-name-container">{tag.name}</div>
-      <div className="tag-score-container">{parseInt(tag.score).toFixed(2).toString()} %</div>
+      <div className="tag-score-container">{parseFloat(tag.score * 100).toFixed(2).toString()} %</div>
     </div>
   };
 

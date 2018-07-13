@@ -16,6 +16,7 @@ import {
   SET_INPUT_STATE_FROM_LOCALSTORAGE,
 } from "./actionConstants";
 import {} from "./actionConstants";
+import {SET_FETCHING_PICTURES_FALSE} from "./actionConstants";
 
 export const getTokenUrlFailure = error => ({
   type: GET_TOKEN_URL_FAILURE,
@@ -43,7 +44,7 @@ export const setFetchingPicturesTrue = () => ({
 });
 
 export const setFetchingPicturesFalse = () => ({
-  type: SET_FETCHING_TAGS_TRUE,
+  type: SET_FETCHING_PICTURES_FALSE,
 });
 
 export const setVisionTags = (tags) => ({
