@@ -11,7 +11,10 @@ const initialState = {
 };
 
 const handleSetVisionTags = (state, payload) => {
-  state.pictures[state.activePictureIndex].tags = payload;
+  state.pictures[state.activePictureIndex].tags =
+    payload.length > 0 ?
+      payload :
+      [Object.assign({}, {score: 0, name: "NO TAGS FOUND"})];
   return state;
 };
 
