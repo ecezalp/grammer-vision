@@ -1,5 +1,8 @@
+$background_color: rgba(241, 231, 208, 0.5);
+$submit_button_color: rgb(221, 218, 210);
+
 .app-container {
-  background-color: ivory;
+  background-color: $background_color;
   height: 100%;
   width: 100%;
   display: flex;
@@ -75,32 +78,76 @@
     }
   }
 
-  .pictures-viewer-container {
+  .pictures-container {
     display: flex;
+    height: 100%;
+    width: 100%;
     justify-content: center;
 
-    .spinner-container, .tags {
-      width: 16vw;
-      background-color: aliceblue;
+    .main-container {
+      display: flex;
+      justify-content: center;
+      height: 100%;
+      flex-direction: column;
+      width: 50%;
 
-      .tag-container {
+      .title-container {
+        padding-top: 1vh;
+
+        .title {
+          font-weight: 700;
+          font-size: 2.5rem;
+        }
+
+        .sub-title {
+          font-weight: 300;
+          font-size: 1.5rem;
+          font-style: italic;
+        }
+      }
+
+      .button-group {
         display: flex;
-        flex-direction: column;
-        padding: 1.5vh;
-        text-transform: uppercase;
+        align-self: flex-end;
+
+        .submit-button {
+          background-color: $submit_button_color;
+          display: flex;
+          align-items: center;
+          padding: 0px 10px;
+          cursor: pointer;
+        }
+
+        .button-increment, .button-decrement {
+          display: flex;
+          align-items: center;
+          font-size: 2em;
+          padding: 10px;
+          cursor: pointer;
+        }
       }
     }
 
-    .button-increment, .button-decrement {
+    .tags-container {
       display: flex;
-      align-items: center;
-      font-size: 2em;
-      padding: 10px;
+      width: 30%;
 
-      i {
-        cursor: pointer;
+      .spinner-container, .tags {
+        width: 16vw;
+        background-color: aliceblue;
+
+        .tag-container {
+          display: flex;
+          flex-direction: column;
+          padding: 1.5vh;
+          text-transform: uppercase;
+        }
       }
     }
   }
+}
+
+body {
+  margin: 0 !important;
 }
 
