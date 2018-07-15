@@ -86,13 +86,13 @@ $submit_button_color: rgb(221, 218, 210);
 
     .main-container {
       display: flex;
-      justify-content: center;
       height: 100%;
       flex-direction: column;
-      width: 50%;
+      width: 40%;
 
       .title-container {
         padding-top: 1vh;
+        padding-bottom: 7vh;
 
         .title {
           font-weight: 700;
@@ -108,7 +108,7 @@ $submit_button_color: rgb(221, 218, 210);
 
       .button-group {
         display: flex;
-        align-self: flex-end;
+        justify-content: flex-end;
 
         .submit-button {
           background-color: $submit_button_color;
@@ -128,22 +128,41 @@ $submit_button_color: rgb(221, 218, 210);
       }
     }
 
+    .picture-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      overflow: hidden;
+
+      .picture-content {
+        align-content: center;
+        display: flex;
+        flex-basis: 1;
+        font-size: 3em;
+      }
+    }
+
     .tags-container {
       display: flex;
       width: 30%;
 
       .spinner-container, .tags {
-        width: 16vw;
-        background-color: aliceblue;
+        padding-left: 3vw;
+        padding-top: 12vh;
 
         .tag-container {
           display: flex;
           flex-direction: column;
           padding: 1.5vh;
           text-transform: uppercase;
+
+          .tag-score-container {
+            display: flex;
+          }
         }
       }
     }
+
   }
 }
 

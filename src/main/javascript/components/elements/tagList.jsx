@@ -1,21 +1,21 @@
 import React from 'react';
 import Spinner from 'react-spinkit';
 import PropTypes from 'prop-types';
+import {getTagStyle} from '../helpers/colorHelper';
 
 export default function TagList({isFetching, tags}) {
   const spinner = <div className="spinner-container">
     <Spinner name="wave"/>
   </div>;
 
-  const getTagColor = (percentage) => {
-    return {};
-  };
 
-  const getTag = (tag, i) => {
-    return <div key={i} className="tag-container">
+  const getTag = (tag, index) => {
+    return <div key={index} className="tag-container">
       <div className="tag-name-container">{tag.name}</div>
-      <div className="tag-score-container">{parseFloat(tag.score * 100).toFixed(2).toString()} %</div>
-      <div className="tag-bar" style={getTagColor()}></div>
+      <div className="tag-score-container">
+        {parseFloat(tag.score * 100).toFixed(2).toString() + " %"}
+        <div className="tag-bar" style={getTagStyle(parseFloat(tag.score * 100).toFixed(0), index)}/>
+      </div>
     </div>
   };
 

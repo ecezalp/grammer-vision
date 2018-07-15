@@ -7,8 +7,10 @@ export default function ArrowButton({isIncrement, onButtonClick}) {
     <i className="fas fa-arrow-right"/> :
     <i className="fas fa-arrow-left"/>;
 
-  return <div className={`button-${isIncrement ? 'increment' : 'decrement'}`}
-              onClick={onButtonClick}>
+  const className = `button-${isIncrement ? 'increment' : 'decrement'}`;
+
+  return <div className={className}
+              onClick={() => onButtonClick(isIncrement)}>
     {icon}
   </div>;
 }

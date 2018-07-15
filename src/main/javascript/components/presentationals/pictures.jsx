@@ -41,25 +41,25 @@ export default function Pictures({
 
   const buttonGroup = <div className="button-group">
     <ArrowButton isIncrement={false}
-                 onButtonClick={() => handleArrowButtonClick(false)}/>
+                 onButtonClick={handleArrowButtonClick}/>
     <ArrowButton isIncrement={true}
-                 onButtonClick={() => handleArrowButtonClick(true)}/>
+                 onButtonClick={handleArrowButtonClick}/>
     <SubmitButton label={"try again"}
                   onButtonClick={() => {
                   }}/>
   </div>;
 
-  const pictureDisplay = <div className="picture-container" key={picture.id}>
-    <img src={picture.url}/>
-  </div>;
+  const pictureDisplay = (picture) => <img className="picture-content" key={picture.id} src={picture.url}/>;
 
   const tagList = <TagList isFetching={isFetching} tags={picture.tags}/>;
 
   return <div className="pictures-container">
     <div className="main-container">
-      {title}
-      {buttonGroup}
-      {pictureDisplay}
+      <div className="top-container">
+        {title}
+        {buttonGroup}
+      </div>
+      {pictureDisplay(picture)}
     </div>
     {tagList}
   </div>;
