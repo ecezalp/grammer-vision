@@ -10,7 +10,8 @@ export default function Pictures({
                                    isFetchingPictures,
                                    isFetchingTags,
                                    setActivePictureIndex,
-                                   getPictureTags
+                                   getPictureTags,
+                                   handleFormSubmit,
                                  }) {
 
   const isFetching = (isFetchingPictures || isFetchingTags);
@@ -21,32 +22,39 @@ export default function Pictures({
     getPictureTags(picture);
   }
 
-  const isIncrementable = (isIncrement, activePictureIndex, maxLength) => {
-    return (isIncrement && activePictureIndex < maxLength);
+  const isIncrementable = () => {
+    return (activePictureIndex < pictures.length);
   };
 
-  const isDecrementable = (isIncrement, activePictureIndex, minLength) => {
-    return (!isIncrement && activePictureIndex > minLength);
+  const isDecrementable = () => {
+    return (activePictureIndex > 0);
   };
 
   const getUpdatedIndex = (isIncrement) => {
-    if (isIncrementable(isIncrement, activePictureIndex, pictures.length)) return activePictureIndex++;
-    if (isDecrementable(isIncrement, activePictureIndex, 0)) return activePictureIndex--;
+    if (isIncrement) {
+      if (isIncrementable()) return activePictureIndex++;
+    } else {
+      if (isDecrementable()) return activePictureIndex--;
+    }
     return activePictureIndex;
   };
 
-  const handleArrowButtonClick = (isIncrement) => setActivePictureIndex(getUpdatedIndex(isIncrement));
+  const handleArrowButtonClick = (isIncrement) =>
+    setActivePictureIndex(getUpdatedIndex(isIncrement));
 
   const title = <Title isSubtitleIncluded={true}/>;
 
+  const getArrowButton = (isIncrement, isDisabled) =>
+    <ArrowButton isIncrement={isIncrement} isDisabled={isDisabled} onButtonClick={handleArrowButtonClick}/>;
+
+  const submitButton = <SubmitButton onButtonClick={handleFormSubmit} iconClassName={"fas fa-search"}/>;
+
   const buttonGroup = <div className="button-group">
-    <ArrowButton isIncrement={false}
-                 onButtonClick={handleArrowButtonClick}/>
-    <ArrowButton isIncrement={true}
-                 onButtonClick={handleArrowButtonClick}/>
-    <SubmitButton label={"try again"}
-                  onButtonClick={() => {
-                  }}/>
+    {submitButton}
+    <div className="arrows">
+      {getArrowButton(false, !isDecrementable())}
+      {getArrowButton(true, !isIncrementable())}
+    </div>
   </div>;
 
   const pictureDisplay = (picture) => <img className="picture-content" key={picture.id} src={picture.url}/>;

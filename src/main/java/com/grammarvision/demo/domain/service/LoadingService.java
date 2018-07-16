@@ -38,10 +38,9 @@ public class LoadingService {
 
 
   public List<TagResponse> getAnnotations(List<AnnotateImageResponse> responses) {
-    List<List<EntityAnnotation>> test = responses.stream().map(response -> response.getLabelAnnotationsList()).collect(toList());
+    List<List<EntityAnnotation>> labelsList = responses.stream().map(response -> response.getLabelAnnotationsList()).collect(toList());
     List<TagResponse> tagList = new ArrayList<>();
-
-    for (List<EntityAnnotation> annotations : test) {
+    for (List<EntityAnnotation> annotations : labelsList) {
       for (EntityAnnotation annotation : annotations) {
         TagResponse tagResponse = TagResponse.builder()
           .score(String.valueOf(annotation.getScore()))
@@ -53,41 +52,14 @@ public class LoadingService {
     return tagList;
   }
 
-  public HashMap<String, String> getSingleAnnotation(AnnotateImageResponse response) {
-    HashMap<String, String> annotations = new HashMap<>();
-    for (EntityAnnotation annotation : response.getLabelAnnotationsList()) {
-      for (Map.Entry<Descriptors.FieldDescriptor, Object> entry : annotation.getAllFields().entrySet()) {
-        System.out.printf("%s : %s\n", entry.getKey(), entry.getValue());
-        annotations.put(entry.getKey().toString(), entry.getValue().toString());
-      }
-    }
-
-    System.out.println("3333333333333333333");
-    System.out.println(annotations);
-    System.out.println("3333333333333333333");
-    return annotations;
-  }
-
-  public void printErrors(List<AnnotateImageResponse> responses) {
-    for (AnnotateImageResponse res : responses) {
-      if (res.hasError()) {
-        System.out.printf("Error: %s\n", res.getError().getMessage());
-        return;
-      }
-    }
-  }
-
   public BatchAnnotateImagesResponse getImageResponseFromBytes(ImageAnnotatorClient vision, byte[] bytes) {
-
     ByteString imgBytes = ByteString.copyFrom(bytes);
     AnnotateImageRequest request = getImageRequestFromString(imgBytes);
     BatchAnnotateImagesResponse response = null;
     try {
       response = vision.batchAnnotateImages(singletonList(request));
     } catch (Exception e) {
-      System.out.println("####################");
-      System.out.println(e.getMessage());
-      System.out.println("####################");
+      e.printStackTrace();
     }
     return response;
   }
@@ -110,7 +82,6 @@ public class LoadingService {
       e.printStackTrace();
     }
     ByteArrayOutputStream output = new ByteArrayOutputStream();
-
     try (InputStream inputStream = url.openStream()) {
       int n = 0;
       byte[] buffer = new byte[1024];
@@ -120,7 +91,6 @@ public class LoadingService {
     } catch (IOException e) {
       e.printStackTrace();
     }
-
     return output.toByteArray();
   }
 }

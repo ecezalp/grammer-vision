@@ -2,6 +2,7 @@ import axios from 'axios';
 
 import * as actions from "./actionCreators";
 import {setWindowLocation, persistStateOnLocalStorage} from "./windowActions";
+import {isUsername} from "./actionHelpers";
 
 export const getTokenUrlRequest = (dispatch, state) => {
   dispatch(actions.setFetchingTokenTrue());
@@ -39,4 +40,8 @@ export const getPictureTags = (dispatch, picture) => {
     .catch(() => {
       dispatch(actions.setFetchingTagsFalse());
     });
+};
+
+export const search = (dispatch, term) => {
+  console.log(`the search term is ${term}`)
 };
