@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {TextField} from "material-ui";
+import {blue600} from 'material-ui/styles/colors';
 
 export default function SubmitButton({label, onButtonClick, iconClassName}) {
 
@@ -16,7 +18,10 @@ export default function SubmitButton({label, onButtonClick, iconClassName}) {
   return <div className="submit-button"
               key={`button-submit-${label}`}>
     {getButtonLabel(label)}
-    {input}
+    <TextField floatingLabelText={"@username or #hashtag"}
+               underlineFocusStyle={{borderColor: blue600}}
+               underlineStyle={{borderColor: blue600}}
+               floatingLabelStyle={{color: blue600}}/>
     {submit}
   </div>;
 }

@@ -2,24 +2,19 @@ const getColor = (r, g, b) => Object.assign({}, {r, g, b});
 
 const getTagColor = (index) => {
   const colors = [
-    getColor(97, 122, 127),
-    getColor(112, 136, 122),
-    getColor(137, 164, 122),
-    getColor(175, 194, 164),
-    getColor(164, 177, 180),
-    getColor(126, 129, 170),
-    getColor(203, 129, 89),
-    getColor(225, 184, 128),
-    getColor(216, 186, 74),
-    getColor(216, 186, 74),
-    getColor(216, 186, 74),
-    getColor(216, 186, 74),
-    getColor(216, 186, 74),
-    getColor(216, 186, 74),
+    '#01579B',
+    '#0277BD',
+    '#0288D1',
+    '#039BE5',
+    '#03A9F4',
+    '#29B6F6',
+    '#4FC3F7',
+    '#81D4FA',
+    '#B3E5FC',
+    '#E1F5FE',
   ];
 
-  let color = colors[index];
-  return `rgb(${color.r}, ${color.g}, ${color.b})`;
+  return colors[index];
 };
 
 const getWidth = (percentage) => {

@@ -25,18 +25,4 @@ public class PictureService {
   public Picture getPictureFromJson(String json) {
     return gson.fromJson(json, Picture.class);
   }
-
-//  public List<Picture> getPicturesFromJson(String json) {
-//    Picture[] pictures = gson.fromJson(json, Picture[].class);
-//    return Arrays.asList(pictures);
-//  }
-//
-//  public List<byte[]> downloadPictures(List<Picture> pictures) throws Exception {
-//   return pictures.stream().map(picture -> loadingService.getBytesFromUrl(picture.getPictureUrl())).collect(toList());
-//  }
-//
-//  public BufferedImage getPictureFromUrl(String urlString) throws IOException {
-//    BufferedImage img = ImageIO.read(new URL(urlString));
-//    return img;
-//  }
 }

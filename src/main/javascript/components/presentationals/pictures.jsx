@@ -57,7 +57,7 @@ export default function Pictures({
     </div>
   </div>;
 
-  const pictureDisplay = (picture) => <img className="picture-content" key={picture.id} src={picture.url}/>;
+  const pictureDisplay = (picture) => <div className="picture-content" key={picture.id} style={{backgroundImage: `url(${picture.url}`}}/>;
 
   const tagList = <TagList isFetching={isFetching} tags={picture.tags}/>;
 

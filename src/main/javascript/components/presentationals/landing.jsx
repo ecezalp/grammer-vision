@@ -44,9 +44,6 @@ export default function Landing(props) {
 
   const getInputs = Object.keys(input).map((key, index) => getInput(input[key], index));
 
-  const getOption = (option, index) =>
-    <div className="landing-option" key={`landing-option-${index}`}>{option}</div>;
-
   const submitButton = <input type="submit"
                               className="submit-button"
                               onClick={() => handleSubmitClick(props)}
