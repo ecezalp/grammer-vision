@@ -11,7 +11,6 @@ $submit_button_color: rgb(221, 218, 210);
   font-family: Lato, Helvetica;
 
   .landing-container {
-    background-color: aliceblue;
     height: 100%;
     width: 50%;
     display: flex;
@@ -21,60 +20,41 @@ $submit_button_color: rgb(221, 218, 210);
 
     .landing-title {
       display: flex;
-      flex-direction: column;
-      font-weight: bold;
+      align-items: baseline;
+      font-size: 3em;
 
-      .headline-container {
+      div { margin: 10px;}
+
+      .blue {color: rgb(90, 130, 236);}
+
+      .red {color: rgb(202, 69, 57);}
+
+      .green {color: rgb(103, 166, 89);}
+
+      .yellow {color: rgb(232, 185, 45);}
+
+      .title-1 {
         display: flex;
         align-items: baseline;
-
-        .title-1 {
-          font-size: 2em;
-        }
-
-        .title-2 {
-          padding: 0 1rem;
-        }
+        font-family: "Cabin Sketch";
       }
-
-      .byline-container {
-        font-size: 5em;
+      .title-2 {
+        font-family: "Cabin Sketch";
+        font-weight: bold;
+      }
+      .title-3 {
+        font-family: Pacifico !important;
       }
     }
 
-    .landing-form {
-      display: flex;
-      flex-direction: column;
-      width: 55%;
-      justify-content: space-between;
+    .source-link {
+      text-decoration: none;
+      padding-top: 40vh;
 
-      .solo-input-container {
-        display: flex;
-        justify-content: flex-end;
-        padding: 1vh 0;
-
-        .landing-input {
-          margin-left: 10px;
-        }
-
-        .landing-input::placeholder {
-          color: lightgray;
-        }
+      i {
+        color: black;
+        margin: 0 3px;
       }
-
-      .submit-button {
-        text-align: center;
-        cursor: pointer;
-        margin-top: 1vh;
-        max-width: 52px;
-        align-self: flex-end;
-      }
-    }
-
-    .options-container {
-      display: flex;
-      width: 40%;
-      justify-content: space-evenly;
     }
   }
 

@@ -1,11 +1,6 @@
 import {connect} from 'react-redux'
 import {getTokenUrlRequest} from '../../actions/asyncActionCreators'
-import {
-  setInputValue,
-  setInputStateFromLocalstorage,
-  setTokenStateFromLocalstorage,
-  toggleActiveInputField,
-} from "../../actions/actionCreators";
+import {setInputStateFromLocalstorage, setTokenStateFromLocalstorage} from "../../actions/actionCreators";
 import Landing from '../presentationals/landing'
 import {cleanStateOnLocalStorage, readStateOnLocalStorage} from "../../actions/windowActions";
 
@@ -18,13 +13,11 @@ const setStateFromLocalStorage = (dispatch) => {
   }
 };
 
-const mapStateToProps = state => Object.assign({}, state.token, {input: state.input});
+const mapStateToProps = state => Object.assign({}, state.token);
 
 const mapDispatchToProps = (dispatch) => ({
   getInstaToken: (state) => getTokenUrlRequest(dispatch, state),
-  setInputValue: (event, data) => dispatch(setInputValue(event, data)),
   setStateFromLocalStorage: () => setStateFromLocalStorage(dispatch),
-  toggleActiveInputField: () => dispatch(toggleActiveInputField())
 });
 
 export default connect(
