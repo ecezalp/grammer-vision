@@ -1,5 +1,7 @@
 $background_color: whitesmoke;
 $submit_button_color: rgb(221, 218, 210);
+$navbar_height: 110px;
+$paper_shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 
 .app-container {
   background-color: $background_color;
@@ -10,27 +12,26 @@ $submit_button_color: rgb(221, 218, 210);
   align-items: center;
   font-family: Lato, Helvetica;
 
-  .landing-container {
-    height: 100%;
-    width: 50%;
+  .navbar {
+    position: absolute;
+    top: 0;
+    color: black;
+    width: 100%;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
+    justify-content: center;
+    text-decoration: none;
+    background-color: white;
+    height: $navbar_height;
 
-    .landing-title {
+    .title {
       display: flex;
       align-items: baseline;
       font-size: 3em;
 
       div { margin: 10px;}
-
       .blue {color: rgb(90, 130, 236);}
-
       .red {color: rgb(202, 69, 57);}
-
       .green {color: rgb(103, 166, 89);}
-
       .yellow {color: rgb(232, 185, 45);}
 
       .title-1 {
@@ -46,10 +47,23 @@ $submit_button_color: rgb(221, 218, 210);
         font-family: Pacifico !important;
       }
     }
+  }
+
+  .landing-container {
+    height: 100%;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+
+    .login-button {
+      margin-top: 20vh;
+    }
 
     .source-link {
       text-decoration: none;
-      padding-top: 40vh;
+      padding-top: 30vh;
 
       i {
         color: black;
@@ -63,13 +77,27 @@ $submit_button_color: rgb(221, 218, 210);
     height: 100%;
     width: 100%;
     justify-content: center;
+    margin-top: $navbar_height*2;
 
     .main-container {
       display: flex;
-      height: 100%;
-      flex-direction: column;
-      width: 40%;
-      padding-left: 10vw;
+      width: 100%;
+      justify-content: center;
+
+      .square-container {
+        width: 30%;
+        padding: 3vw;
+
+        .square {
+          width: 100%;
+          padding-bottom: 100%;
+          background-position: center center;
+          background-repeat: no-repeat;
+          background-size: cover;
+          box-shadow: $paper_shadow;
+          background-color: white;
+        }
+      }
 
       .top-container {
         height: 30vh;
@@ -77,19 +105,6 @@ $submit_button_color: rgb(221, 218, 210);
         flex-direction: column;
         justify-content: space-around;
         margin-bottom: -2.2vh;
-
-        .title-container {
-          .title {
-            font-weight: 700;
-            font-size: 2.5rem;
-          }
-
-          .sub-title {
-            font-weight: 300;
-            font-size: 1.5rem;
-            font-style: italic;
-          }
-        }
 
         .button-group {
           display: flex;
@@ -127,41 +142,35 @@ $submit_button_color: rgb(221, 218, 210);
       }
     }
 
-    .picture-content {
-      width: 100%;
-      padding-bottom: 100%;
-      background-position: center center;
-      background-repeat: no-repeat;
-      background-size: cover;
-    }
 
-    .tags-container {
-      display: flex;
-      padding: 30vh 5vh;
-      margin-left: 5vh;
-      overflow: scroll;
 
-      .spinner-container, .tags {
-        .tag-container {
-          display: flex;
-          flex-direction: column;
-          padding: 1.5vh;
-          text-transform: uppercase;
-          background-color: white;
-          margin-bottom: 2vh;
-          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-
-          .tag-score-container {
-            display: flex;
-            align-items: center;
-
-            .tag-bar {
-              margin: 0 15px;
-            }
-          }
-        }
-      }
-    }
+    //.tags-container {
+    //  display: flex;
+    //  padding: 30vh 5vh;
+    //  margin-left: 5vh;
+    //  overflow: scroll;
+    //
+    //  .spinner-container, .tags {
+    //    .tag-container {
+    //      display: flex;
+    //      flex-direction: column;
+    //      padding: 1.5vh;
+    //      text-transform: uppercase;
+    //      background-color: white;
+    //      margin-bottom: 2vh;
+    //      box-shadow: $paper_shadow;
+    //
+    //      .tag-score-container {
+    //        display: flex;
+    //        align-items: center;
+    //
+    //        .tag-bar {
+    //          margin: 0 15px;
+    //        }
+    //      }
+    //    }
+    //  }
+    //}
 
   }
 }

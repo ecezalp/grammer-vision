@@ -1,7 +1,7 @@
 import {connect} from 'react-redux'
 import {getTokenUrlRequest} from '../../actions/asyncActionCreators'
 import {setInputStateFromLocalstorage, setTokenStateFromLocalstorage} from "../../actions/actionCreators";
-import Landing from '../presentationals/landing'
+import Landing from '../presentationals/pages/landing'
 import {cleanStateOnLocalStorage, readStateOnLocalStorage} from "../../actions/windowActions";
 
 const setStateFromLocalStorage = (dispatch) => {

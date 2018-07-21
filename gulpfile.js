@@ -84,6 +84,7 @@ var eslint = require('gulp-eslint');
 var jasmineBrowser = require('gulp-jasmine-browser');
 var plumber = require('gulp-plumber');
 var nodemon = require('gulp-nodemon');
+var uglify = require('gulp-uglify');
 
 gulp.task('lint', function () {
   return gulp.src(GLOBS.js_jsx)
@@ -109,6 +110,7 @@ gulp.task('build', function () {
   return gulp.src(GLOBS.js_jsx)
     .pipe(webpackStream(_.merge({}, WEBPACK_BUILD_CONFIG, {devtool: 'inline-source-map'})))
     .pipe(webpackStream(WEBPACK_STYLE_CONFIG))
+    .pipe(gulp.dest(BUILD_PATH))
     .pipe(gulp.dest(WATCH_PATH))
 });
 

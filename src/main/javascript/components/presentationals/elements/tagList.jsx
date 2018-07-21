@@ -1,7 +1,7 @@
 import React from 'react';
 import Spinner from 'react-spinkit';
 import PropTypes from 'prop-types';
-import {getTagStyle} from '../helpers/colorHelper';
+import {getTagStyle} from '../../helpers/colorHelper';
 
 export default function TagList({isFetching, tags}) {
   const spinner = <div className="spinner-container">
@@ -23,8 +23,10 @@ export default function TagList({isFetching, tags}) {
     {tags.map(getTag)}
   </div>;
 
-  return <div className="tags-container">
-    {isFetching ? spinner : allTags}
+  return <div className="square-container">
+    <div className="square">
+      {isFetching ? spinner : allTags}
+    </div>
   </div>;
 }
 

@@ -1,5 +1,5 @@
 import {connect} from 'react-redux'
-import Pictures from "../presentationals/pictures";
+import Pictures from "../presentationals/pages/pictures";
 import {
   setActivePictureIndex
 } from "../../actions/actionCreators";

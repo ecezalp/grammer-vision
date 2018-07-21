@@ -18,5 +18,4 @@ public class AppConfig {
       .callback("http://localhost:8080/api/callback")
       .build();
   }
-
 }
