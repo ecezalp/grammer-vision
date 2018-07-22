@@ -1,32 +1,51 @@
 import React from 'react';
 import Spinner from 'react-spinkit';
 import PropTypes from 'prop-types';
-import {getTagStyle} from '../../helpers/colorHelper';
 
 export default function TagList({isFetching, tags}) {
-  const spinner = <div className="spinner-container">
-    <Spinner name="wave"/>
-  </div>;
 
+  const getRoundedScore = (score, extraDigits) => parseFloat(score * 100).toFixed(extraDigits);
 
-  const getTag = (tag, index) => {
-    return <div key={index} className="tag-container">
-      <div className="tag-name-container">{tag.name}</div>
-      <div className="tag-score-container">
-        {parseFloat(tag.score * 100).toFixed(2).toString() + " %"}
-        <div className="tag-bar" style={getTagStyle(parseFloat(tag.score * 100).toFixed(0), index)}/>
+  const getTagName = (name) => <div className="tag-name-container">{name}</div>;
+
+  const getTagScore = (score) =>
+    <div className="tag-score-container">
+      {getRoundedScore(score, 2).toString() + " %"}
+    </div>;
+
+  const getBarStyle = (roundScore) => ({
+    background: `linear-gradient(to right, #4caf50 ${roundScore}%, #ccc ${100 - roundScore}%)`
+  });
+
+  const getTagBar = (score, index) =>
+    <div className="tag-bar" style={getBarStyle(getRoundedScore(score, 0), index)}/>;
+
+  const getTagLink = (name) =>
+    <a href={`https://www.google.com/search?q=${name.replace(" ", "+")}`}
+       className="tag-link">
+      {getTagName(name)}
+    </a>;
+
+  const getTag = (tag, index) =>
+    <div className="tag-container" key={index}>
+      <div className="tag-top-container">
+        {getTagLink(tag.name)}
+        {getTagScore(tag.score)}
       </div>
-    </div>
-  };
+      {getTagBar(tag.score, index)}
+    </div>;
+
 
   const allTags = <div className="tags">
     {tags.map(getTag)}
   </div>;
 
-  return <div className="square-container">
-    <div className="square">
-      {isFetching ? spinner : allTags}
-    </div>
+  const spinner = <div className="spinner-container">
+    <Spinner name="wave"/>
+  </div>;
+
+  return <div className="taglist-container">
+    {isFetching ? spinner : allTags}
   </div>;
 }
 
