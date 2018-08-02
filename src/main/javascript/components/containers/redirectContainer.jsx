@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
 import {setInputStateFromLocalstorage, setTokenStateFromLocalstorage} from "../../actions/actionCreators";
-import {getPictureUrls} from "../../actions/asyncActionCreators";
+import {getPictureDataFromInstagram} from "../../actions/asyncActionCreators";
 import Redirect from '../functionals/redirect'
 import {readStateOnLocalStorage, isStorageDirty} from "../../actions/windowActions";
 
@@ -13,7 +13,7 @@ const setStateFromLocalStorage = (dispatch, token) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  getPictureUrls: (token, handleSuccess) => getPictureUrls(dispatch, token, handleSuccess),
+  getPictureDataFromInstagram: (token, handleSuccess) => getPictureDataFromInstagram(dispatch, token, handleSuccess),
   setStateFromLocalStorage: (token) => setStateFromLocalStorage(dispatch, token),
 });
 

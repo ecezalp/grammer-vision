@@ -1,7 +1,7 @@
 import React from 'react';
 import {cleanStateOnLocalStorage, readStateOnLocalStorage} from "../../actions/windowActions";
 
-export default function Redirect({getPictureUrls, history, setStateFromLocalStorage, token}) {
+export default function Redirect({getPictureDataFromInstagram, history, setStateFromLocalStorage, token}) {
 
   const cleanAndNavigate = () => {
     cleanStateOnLocalStorage();
@@ -9,7 +9,7 @@ export default function Redirect({getPictureUrls, history, setStateFromLocalStor
   };
 
   setStateFromLocalStorage(token);
-  getPictureUrls(token, cleanAndNavigate);
+  getPictureDataFromInstagram(token, cleanAndNavigate);
 
   return null;
 }

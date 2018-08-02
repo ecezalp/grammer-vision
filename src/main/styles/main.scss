@@ -28,11 +28,21 @@ $paper_shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
       align-items: baseline;
       font-size: 3em;
 
-      div { margin: 10px;}
-      .blue {color: rgb(90, 130, 236);}
-      .red {color: rgb(202, 69, 57);}
-      .green {color: rgb(103, 166, 89);}
-      .yellow {color: rgb(232, 185, 45);}
+      div {
+        margin: 10px;
+      }
+      .blue {
+        color: rgb(90, 130, 236);
+      }
+      .red {
+        color: rgb(202, 69, 57);
+      }
+      .green {
+        color: rgb(103, 166, 89);
+      }
+      .yellow {
+        color: rgb(232, 185, 45);
+      }
 
       .title-1 {
         display: flex;
@@ -55,15 +65,16 @@ $paper_shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: flex-end;
 
     .login-button {
-      margin-top: 20vh;
+      margin-bottom: 6vh;
     }
 
     .source-link {
       text-decoration: none;
       padding-top: 30vh;
+      margin-bottom: 8vh;
 
       i {
         color: black;
@@ -81,130 +92,113 @@ $paper_shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 
     .main-container {
       display: flex;
+      flex-direction: column;
       width: 100%;
-      justify-content: center;
 
-      .square-container {
-        width: 30%;
-        padding: 3vw;
+      .top-container {
+        height: 30vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
 
-        .square {
-          width: 100%;
-          padding-bottom: 100%;
-          background-position: center center;
-          background-repeat: no-repeat;
-          background-size: cover;
-          box-shadow: $paper_shadow;
-          background-color: white;
-        }
       }
 
-      .taglist-container {
-        background-color: white;
-        box-shadow: $paper_shadow;
-        width: 20%;
-        height: 50%;
-        overflow: scroll;
-        margin: 3vw;
-        padding: 1vw;
+      .mid-container {
+        display: flex;
+        justify-content: center;
 
-        .tag-container {
-          padding-bottom: 2vh;
+        .left {
+          height: 100%;
+          width: 30%;
+          padding: 5vw 3vw;
 
-          .tag-top-container {
+          .square-container {
+            .square {
+              width: 100%;
+              padding-bottom: 100%;
+              background-position: center center;
+              background-repeat: no-repeat;
+              background-size: cover;
+              box-shadow: $paper_shadow;
+              background-color: white;
+            }
+          }
+
+          .button-group {
             display: flex;
-            color: gray;
-            align-items: baseline;
             justify-content: space-between;
+
+            .arrows {
+              display: flex;
+            }
+
+            .submit-button {
+              display: flex;
+              align-items: center;
+              font-size: 2em;
+              padding: 10px;
+              cursor: pointer;
+              margin-left: -10px;
+
+              button {
+                font-size: 1rem;
+                height: 28px;
+                border-radius: 18%;
+                border: 1px solid darkgray;
+                background: linear-gradient(to bottom, rgba(226, 226, 226, 1) 0%, rgba(219, 219, 219, 1) 50%, rgba(209, 209, 209, 1) 51%, rgba(240, 240, 240, 1) 100%);
+              }
+            }
+
+            .button-increment, .button-decrement, .submit-button {
+              display: flex;
+              align-items: center;
+              font-size: 2em;
+              padding: 10px;
+              cursor: pointer;
+            }
           }
 
-          .tag-link {
-            text-decoration: none;
-            text-transform: capitalize;
-            letter-spacing: 0.25px;
-            font-size: 1.2rem;
-            font-family: "Quicksand";
+          .location-container {
+            display: flex;
+            justify-content: space-between;
+            padding-top: 1vh;
           }
+        }
 
-          .tag-bar {
-            height: 4px;
+        .taglist-container {
+          background-color: white;
+          box-shadow: $paper_shadow;
+          width: 20%;
+          height: fit-content;
+          overflow: scroll;
+          margin: 5vw 3vw;
+          padding: 1.5vw;
+
+          .tag-container {
+            padding-bottom: 2vh;
+
+            .tag-top-container {
+              display: flex;
+              color: gray;
+              align-items: baseline;
+              justify-content: space-between;
+            }
+
+            .tag-link {
+              text-decoration: none;
+              text-transform: capitalize;
+              letter-spacing: 0.25px;
+              font-size: 1.2rem;
+              font-family: "Quicksand";
+            }
+
+            .tag-bar {
+              height: 4px;
+            }
           }
         }
       }
     }
-
-
-
-    //.tags-container {
-    //  display: flex;
-    //  padding: 30vh 5vh;
-    //  margin-left: 5vh;
-    //  overflow: scroll;
-    //
-    //  .spinner-container, .tags {
-    //    .tag-container {
-    //      display: flex;
-    //      flex-direction: column;
-    //      padding: 1.5vh;
-    //      text-transform: uppercase;
-    //      background-color: white;
-    //      margin-bottom: 2vh;
-    //      box-shadow: $paper_shadow;
-    //
-    //      .tag-score-container {
-    //        display: flex;
-    //        align-items: center;
-    //
-    //        .tag-bar {
-    //          margin: 0 15px;
-    //        }
-    //      }
-    //    }
-    //  }
-    //}
-
-    //.top-container {
-    //  height: 30vh;
-    //  display: flex;
-    //  flex-direction: column;
-    //  justify-content: space-around;
-    //  margin-bottom: -2.2vh;
-    //
-    //  .button-group {
-    //    display: flex;
-    //    justify-content: space-between;
-    //
-    //    .arrows {
-    //      display: flex;
-    //    }
-    //
-    //    .submit-button {
-    //      display: flex;
-    //      align-items: center;
-    //      font-size: 2em;
-    //      padding: 10px;
-    //      cursor: pointer;
-    //      margin-left: -10px;
-    //
-    //      button {
-    //        font-size: 1rem;
-    //        height: 28px;
-    //        border-radius: 18%;
-    //        border: 1px solid darkgray;
-    //        background: linear-gradient(to bottom, rgba(226, 226, 226, 1) 0%, rgba(219, 219, 219, 1) 50%, rgba(209, 209, 209, 1) 51%, rgba(240, 240, 240, 1) 100%);
-    //      }
-    //    }
-    //
-    //    .button-increment, .button-decrement, .submit-button {
-    //      display: flex;
-    //      align-items: center;
-    //      font-size: 2em;
-    //      padding: 10px;
-    //      cursor: pointer;
-    //    }
-    //  }
-    //}
-
   }
 }
 

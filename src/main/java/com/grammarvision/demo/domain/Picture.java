@@ -15,6 +15,8 @@ import java.util.List;
 public class Picture {
   private String id;
   private String url;
+  private String user;
+  private String location;
   private List<String> tags;
 
   public static class PictureBuilder {

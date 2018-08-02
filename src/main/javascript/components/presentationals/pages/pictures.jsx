@@ -18,39 +18,39 @@ export default function Pictures({
 
   const picture = pictures[activePictureIndex];
 
-  if (!isFetching && picture && picture.tags && picture.tags.length === 0) {
-    getPictureTags(picture);
-  }
+  const isIncrementable = (activePictureIndex < pictures.length);
 
-  const isIncrementable = () => {
-    return (activePictureIndex < pictures.length);
-  };
-
-  const isDecrementable = () => {
-    return (activePictureIndex > 0);
-  };
+  const isDecrementable = (activePictureIndex > 0);
 
   const getUpdatedIndex = (isIncrement) => {
-    if (isIncrement && isIncrementable()) return activePictureIndex++;
-    if (isDecrementable()) return activePictureIndex--;
+    if (isIncrement && isIncrementable) return activePictureIndex++;
+    if (isDecrementable) return activePictureIndex--;
     return activePictureIndex;
   };
 
-  const handleArrowButtonClick = (isIncrement) =>
-    setActivePictureIndex(getUpdatedIndex(isIncrement));
+  const handleArrowButtonClick = (isIncrement) => setActivePictureIndex(getUpdatedIndex(isIncrement));
 
   const getArrowButton = (isIncrement, isDisabled) =>
-    <ArrowButton isIncrement={isIncrement} isDisabled={isDisabled} onButtonClick={handleArrowButtonClick}/>;
+    <ArrowButton
+      isIncrement={isIncrement}
+      isDisabled={isDisabled}
+      onButtonClick={handleArrowButtonClick}
+    />;
 
-  const submitButton = <SubmitButton onButtonClick={handleFormSubmit} iconClassName={"fas fa-search"}/>;
+  const submitButton =
+    <SubmitButton
+      onButtonClick={handleFormSubmit}
+      iconClassName={"fas fa-search"}
+    />;
 
-  const buttonGroup = <div className="button-group">
-    {submitButton}
-    <div className="arrows">
-      {getArrowButton(false, !isDecrementable())}
-      {getArrowButton(true, !isIncrementable())}
-    </div>
-  </div>;
+  const buttonGroup =
+    <div className="button-group">
+      {submitButton}
+      <div className="arrows">
+        {getArrowButton(false, !isDecrementable)}
+        {getArrowButton(true, !isIncrementable)}
+      </div>
+    </div>;
 
   const pictureDisplay = ({id, url}) =>
     <div className="square-container">
@@ -59,15 +59,32 @@ export default function Pictures({
            style={{backgroundImage: `url(${url}`}}/>
     </div>;
 
-  const tagList = <TagList isFetching={isFetching} tags={picture.tags}/>;
+  const locationDisplay = ({location, user}) =>
+    <div className="location-container">
+      <div className="username">@{user}</div>
+      <div className="location">{location}</div>
+    </div>;
+
+  const tagList =
+    <TagList
+      isFetching={isFetching}
+      tags={picture.tags}
+    />;
+
+  if (!isFetching && picture && picture.tags && picture.tags.length === 0) {
+    getPictureTags(picture);
+  }
 
   return <div className="pictures-container">
     <div className="main-container">
-      {/*<div className="top-container">*/}
-        {/*{buttonGroup}*/}
-      {/*</div>*/}
-      {pictureDisplay(picture)}
-      {tagList}
+      <div className="mid-container">
+        <div className="left">
+          {buttonGroup}
+          {pictureDisplay(picture)}
+          {locationDisplay(picture)}
+        </div>
+        {tagList}
+      </div>
     </div>
   </div>;
 }

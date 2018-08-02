@@ -17,7 +17,7 @@ export const getTokenUrlRequest = (dispatch, state) => {
     });
 };
 
-export const getPictureUrls = (dispatch, token, handleSuccess) => {
+export const getPictureDataFromInstagram = (dispatch, token, handleSuccess) => {
   dispatch(actions.setFetchingPicturesTrue());
   return axios.get(`https://api.instagram.com/v1/users/self/media/recent?access_token=${token}`)
     .then(response => {

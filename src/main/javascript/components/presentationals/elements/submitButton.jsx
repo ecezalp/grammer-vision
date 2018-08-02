@@ -9,20 +9,17 @@ export default function SubmitButton({label, onButtonClick, iconClassName}) {
 
   const getIcon = (className) => className && <i className={className}/>;
 
-  const input = <input type="text"
-                       className="search-input"
-                       placeholder={"@username or #hashtag"}/>;
-
   const submit = <button type="submit" onClick={onButtonClick}>{getIcon(iconClassName)}</button>;
 
+  const textField = <TextField floatingLabelText={"@username or #hashtag"}
+                               underlineFocusStyle={{borderColor: blue600}}
+                               underlineStyle={{borderColor: blue600}}
+                               floatingLabelStyle={{color: blue600}}/>;
+
   return <div className="submit-button"
+              onClick={onButtonClick}
               key={`button-submit-${label}`}>
-    {getButtonLabel(label)}
-    <TextField floatingLabelText={"@username or #hashtag"}
-               underlineFocusStyle={{borderColor: blue600}}
-               underlineStyle={{borderColor: blue600}}
-               floatingLabelStyle={{color: blue600}}/>
-    {submit}
+    {getIcon(iconClassName)}
   </div>;
 }
 
