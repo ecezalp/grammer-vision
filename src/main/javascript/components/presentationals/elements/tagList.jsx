@@ -22,7 +22,8 @@ export default function TagList({isFetching, tags}) {
 
   const getTagLink = (name) =>
     <a href={`https://www.google.com/search?q=${name.replace(" ", "+")}`}
-       className="tag-link">
+      className="tag-link"
+      target="_blank">
       {getTagName(name)}
     </a>;
 

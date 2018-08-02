@@ -17,7 +17,6 @@ export default function Navbar() {
     <div className="title-3">Instagram</div>
   </div>;
 
-
   return <a href="/" className="navbar">
     {title}
   </a>;

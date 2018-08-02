@@ -1,8 +1,8 @@
 import React from 'react';
-import Title from "../elements/navbar";
 import ArrowButton from "../elements/arrowButton";
-import SubmitButton from "../elements/submitButton";
 import TagList from "../elements/tagList";
+import SearchContainer from "../../containers/searchContainer";
+import PropTypes from 'prop-types';
 
 export default function Pictures({
                                    pictures,
@@ -11,7 +11,6 @@ export default function Pictures({
                                    isFetchingTags,
                                    setActivePictureIndex,
                                    getPictureTags,
-                                   handleFormSubmit,
                                  }) {
 
   const isFetching = (isFetchingPictures || isFetchingTags);
@@ -37,15 +36,11 @@ export default function Pictures({
       onButtonClick={handleArrowButtonClick}
     />;
 
-  const submitButton =
-    <SubmitButton
-      onButtonClick={handleFormSubmit}
-      iconClassName={"fas fa-search"}
-    />;
+  const username = (user) => <div className="username">@{user}</div>;
 
-  const buttonGroup =
+  const topContainer = ({user}) =>
     <div className="button-group">
-      {submitButton}
+      {username(user)}
       <div className="arrows">
         {getArrowButton(false, !isDecrementable)}
         {getArrowButton(true, !isIncrementable)}
@@ -59,11 +54,8 @@ export default function Pictures({
            style={{backgroundImage: `url(${url}`}}/>
     </div>;
 
-  const locationDisplay = ({location, user}) =>
-    <div className="location-container">
-      <div className="username">@{user}</div>
-      <div className="location">{location}</div>
-    </div>;
+  const locationDisplay = ({location}) =>
+    <div className="location-container">{location}</div>;
 
   const tagList =
     <TagList
@@ -71,20 +63,30 @@ export default function Pictures({
       tags={picture.tags}
     />;
 
+  const search = <SearchContainer/>;
+
   if (!isFetching && picture && picture.tags && picture.tags.length === 0) {
     getPictureTags(picture);
   }
 
   return <div className="pictures-container">
-    <div className="main-container">
-      <div className="mid-container">
-        <div className="left">
-          {buttonGroup}
-          {pictureDisplay(picture)}
-          {locationDisplay(picture)}
-        </div>
-        {tagList}
-      </div>
+    <div className="left">
+      {topContainer(picture)}
+      {pictureDisplay(picture)}
+      {locationDisplay(picture)}
+    </div>
+    <div className="right">
+      {search}
+      {tagList}
     </div>
   </div>;
 }
+
+Pictures.propTypes = {
+  pictures: PropTypes.array.isRequired,
+  activePictureIndex: PropTypes.number.isRequired,
+  isFetchingPictures: PropTypes.bool.isRequired,
+  isFetchingTags: PropTypes.bool.isRequired,
+  setActivePictureIndex: PropTypes.func.isRequired,
+  getPictureTags: PropTypes.func.isRequired,
+};

@@ -9,11 +9,9 @@ import {
   SET_FETCHING_PICTURES_TRUE,
   SET_FETCHING_TAGS_TRUE,
   SET_VISION_TAGS,
-  TOGGLE_ACTIVE_INPUT_FIELD,
   SET_PICTURES_FROM_INSTA,
   SET_ACTIVE_PICTURE_INDEX,
   SET_INPUT_VALUE,
-  SET_INPUT_STATE_FROM_LOCALSTORAGE,
 } from "./actionConstants";
 import {} from "./actionConstants";
 import {SET_FETCHING_PICTURES_FALSE} from "./actionConstants";
@@ -52,10 +50,6 @@ export const setVisionTags = (tags) => ({
   payload: tags,
 });
 
-export const toggleActiveInputField = () => ({
-  type: TOGGLE_ACTIVE_INPUT_FIELD,
-});
-
 export const setPicturesFromInsta = (rawPictures) => ({
   type: SET_PICTURES_FROM_INSTA,
   payload: processPictures(rawPictures),
@@ -66,15 +60,9 @@ export const setActivePictureIndex = (newIndex) => ({
   payload: newIndex,
 });
 
-export const setInputValue = (event, inputLabel) => ({
+export const setInputValue = (value) => ({
   type: SET_INPUT_VALUE,
-  payload: event.target.value,
-  data: inputLabel,
-});
-
-export const setInputStateFromLocalstorage = (state) => ({
-  type: SET_INPUT_STATE_FROM_LOCALSTORAGE,
-  payload: state,
+  payload: value,
 });
 
 export const setTokenStateFromLocalstorage = (state) => ({

@@ -1,10 +1,11 @@
-#Instagram Vision
+# Instagram Vision
 
-Instagram Vision brings together Google Vision API and Instagram API to generate tags from Instagram streams.
+Brings together Google Vision API and Instagram API to generate tags from Instagram streams.
 
 ## Technical Details
 
 ### Frontend
+
  - react / redux
  - redux-thunk for async action handling
  - gulp, webpack for continuous integration
@@ -13,7 +14,7 @@ Instagram Vision brings together Google Vision API and Instagram API to generate
  - responsive design with flex and media-types
  - PropTypes for type safety
  
- ### Backend
+### Backend
 
 -   Spring Framework
 -   Google App Engine application (hosted on Google Cloud)

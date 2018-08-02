@@ -1,6 +1,7 @@
 import React from 'react';
 import Spinner from 'react-spinkit';
 import Button from '@material-ui/core/Button';
+import PropTypes from 'prop-types';
 
 export default function Landing(props) {
 
@@ -34,3 +35,10 @@ export default function Landing(props) {
     {sourceButton}
   </div>;
 }
+
+Landing.propTypes = {
+  getInstaToken: PropTypes.func.isRequired,
+  setStateFromLocalStorage: PropTypes.func.isRequired,
+  isFetchingToken: PropTypes.bool.isRequired,
+  tokenString: PropTypes.string,
+};
