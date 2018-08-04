@@ -2,15 +2,19 @@ $background_color: whitesmoke;
 $submit_button_color: rgb(221, 218, 210);
 $navbar_height: 110px;
 $paper_shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+$link_color: rgb(90, 130, 236);
+$dark_font_color: rgba(0,0,0,0.75);
 
 .app-container {
-  background-color: whitesmoke;
+  background-image: url("dust_scratches.png");
   height: 100%;
   width: 100%;
   display: flex;
   align-items: flex-start;
-  font-family: Lato, Helvetica;
   overflow: hidden;
+  letter-spacing: 0.25px;
+  font-size: 1.1rem;
+  font-family: "Quicksand";
 
   .navbar {
     position: absolute;
@@ -32,7 +36,7 @@ $paper_shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
         margin: 10px;
       }
       .blue {
-        color: rgb(90, 130, 236);
+        color: $link_color;
       }
       .red {
         color: rgb(202, 69, 57);
@@ -102,6 +106,13 @@ $paper_shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
       display: flex;
       flex-direction: column;
 
+      .username {
+        display: flex;
+        width: 100%;
+        height: 5vh;
+        color: $dark_font_color;
+      }
+
       .square-container {
         .square {
           width: 100%;
@@ -114,51 +125,29 @@ $paper_shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
         }
       }
 
-      .button-group {
+      .arrows {
         display: flex;
-        justify-content: space-between;
-        align-items: baseline;
+        align-self: flex-end;
 
-        .arrows {
-          display: flex;
+        button {
+          margin-left: 1vw;
+          margin-top: 2vh;
+          font-size: 2rem;
         }
-
-        .button-increment, .button-decrement, .submit-button {
-          display: flex;
-          align-items: center;
-          font-size: 2em;
-          cursor: pointer;
-        }
-
-        .button-decrement {padding: 10px;}
-
-        .button-increment {padding: 10px 0 10px 20px;}
       }
 
       .location-container {
         display: flex;
         justify-content: flex-end;
         padding: 10px 0;
-        color: darkgray;
+        color: $dark_font_color;
       }
     }
 
     .right {
-      width: 22.5%;
-      margin: 3vw;
-
-      .search-container {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        width: 100%;
-        margin: 2vh 0;
-        padding: 0 1.5vw 1.5vh;
-
-        div {
-          padding: 5px;
-        }
-      }
+      width: 25%;
+      margin-top: 8vh;
+      margin-left: 3vw;
 
       .taglist-container {
         height: fit-content;
@@ -166,26 +155,54 @@ $paper_shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
         padding: 1.5vw;
 
         .tag-container {
-          padding: 1.5vh 0;
+          padding: 0.8vh 0;
 
           .tag-top-container {
             display: flex;
             color: gray;
             align-items: baseline;
             justify-content: space-between;
+
+            a {
+              color: $link_color;
+            }
           }
 
           .tag-link {
             text-decoration: none;
             text-transform: capitalize;
-            letter-spacing: 0.25px;
-            font-size: 1rem;
-            font-family: "Quicksand";
           }
 
           .tag-bar {
             height: 4px;
           }
+        }
+      }
+
+      .search-top-container {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+
+        .switcher {
+          align-self: flex-end;
+          font-size: 1rem;
+          color: #5a82ec;
+          cursor: pointer;
+          margin-top: 20px;
+          margin-bottom: 5px;
+        }
+      }
+
+      .search-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        padding: 0 1.5vw 1.5vh;
+
+        div {
+          padding: 5px;
         }
       }
     }

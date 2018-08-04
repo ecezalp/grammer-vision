@@ -41,6 +41,14 @@ export const getPictureTags = (dispatch, picture) => {
     });
 };
 
-export const search = (dispatch, term) => {
-  console.log(`the search term is ${term}`)
+export const search = (dispatch, term, token) => {
+  dispatch(actions.setFetchingPicturesTrue());
+  return axios.get(`https://instagram.com/graphql/query/?query_id=17888483320059182&variables={"id":"1951415043","first":20,"after":null}`)
+    .then(response => {
+      dispatch(actions.setPicturesFromInsta(response.data));
+      dispatch(actions.setFetchingPicturesFalse());
+    })
+    .catch(() => {
+      dispatch(actions.setFetchingPicturesFalse());
+    });
 };

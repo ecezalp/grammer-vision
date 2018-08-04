@@ -13,11 +13,11 @@ const initialState = {
 const token = (state = initialState, action) => {
   switch (action.type) {
     case GET_TOKEN_URL_SUCCESS:
-      return Object.assign({}, state, {url: action.payload});
+      return {...state, url: action.payload};
     case GET_TOKEN_URL_FAILURE:
-      return Object.assign({}, state, {url: ""});
+      return {...state, url: ''};
     case SET_TOKEN_STATE_FROM_LOCALSTORAGE:
-      return action.payload;
+      return {...state, tokenString: action.payload['token']};
     default:
       return state;
   }

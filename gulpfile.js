@@ -27,7 +27,7 @@ const WBBPACK_SRC_CONFIG = {
         loader: 'babel-loader',
         exclude: /node_modules/,
         query: {
-          presets: ['react', 'env']
+          presets: ['react', 'env', 'stage-3']
         }
       }, {
         test: /\.json$/,
@@ -55,7 +55,7 @@ const WBBPACK_SRC_CONFIG = {
   }, resolve: {
     extensions: ['.js', '.jsx', '.json', '.scss', '.css']
   }, plugins: [
-    new ExtractTextPlugin('bundle.css')
+    new ExtractTextPlugin('bundle.css'),
   ],
 };
 

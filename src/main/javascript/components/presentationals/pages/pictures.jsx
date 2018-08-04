@@ -36,25 +36,16 @@ export default function Pictures({
       onButtonClick={handleArrowButtonClick}
     />;
 
-  const username = (user) => <div className="username">@{user}</div>;
+  const getUserName = ({user}) => <div className="username">@{user}</div>;
 
-  const topContainer = ({user}) =>
-    <div className="button-group">
-      {username(user)}
-      <div className="arrows">
-        {getArrowButton(false, !isDecrementable)}
-        {getArrowButton(true, !isIncrementable)}
-      </div>
-    </div>;
-
-  const pictureDisplay = ({id, url}) =>
+  const getPictureContainer = ({id, url}) =>
     <div className="square-container">
       <div className="square"
            key={id}
            style={{backgroundImage: `url(${url}`}}/>
     </div>;
 
-  const locationDisplay = ({location}) =>
+  const getLocation = ({location}) =>
     <div className="location-container">{location}</div>;
 
   const tagList =
@@ -65,19 +56,26 @@ export default function Pictures({
 
   const search = <SearchContainer/>;
 
+  const arrowButtons =
+    <div className="arrows">
+      {getArrowButton(false, !isDecrementable)}
+      {getArrowButton(true, !isIncrementable)}
+    </div>;
+
   if (!isFetching && picture && picture.tags && picture.tags.length === 0) {
     getPictureTags(picture);
   }
 
   return <div className="pictures-container">
     <div className="left">
-      {topContainer(picture)}
-      {pictureDisplay(picture)}
-      {locationDisplay(picture)}
+      {getUserName(picture)}
+      {getPictureContainer(picture)}
+      {getLocation(picture)}
+      {arrowButtons}
     </div>
     <div className="right">
-      {search}
       {tagList}
+      {search}
     </div>
   </div>;
 }

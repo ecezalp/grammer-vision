@@ -1,10 +1,10 @@
 import {combineReducers} from 'redux';
 import token from './tokenReducer';
-import input from './inputReducer';
+import search from './searchReducer';
 import pictures from './picturesReducer';
 
 export default combineReducers({
   token,
-  input,
+  search,
   pictures,
 });

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Button from '@material-ui/core/Button';
 
 export default function ArrowButton({isIncrement, onButtonClick}) {
 
@@ -9,10 +10,11 @@ export default function ArrowButton({isIncrement, onButtonClick}) {
 
   const className = `button-${isIncrement ? 'increment' : 'decrement'}`;
 
-  return <div className={className}
-              onClick={() => onButtonClick(isIncrement)}>
+  return <Button className={className}
+                 variant="outlined"
+                 onClick={() => onButtonClick(isIncrement)}>
     {icon}
-  </div>;
+  </Button>;
 }
 
 ArrowButton.propTypes = {

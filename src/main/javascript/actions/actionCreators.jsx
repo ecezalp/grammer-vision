@@ -1,5 +1,5 @@
 import {} from "./actionConstants";
-import {processPictures, processTags} from './actionHelpers'
+import {processPictures} from './actionHelpers'
 import {
   GET_TOKEN_URL_FAILURE,
   SET_TOKEN_STATE_FROM_LOCALSTORAGE,
@@ -12,9 +12,13 @@ import {
   SET_PICTURES_FROM_INSTA,
   SET_ACTIVE_PICTURE_INDEX,
   SET_INPUT_VALUE,
+  TOGGLE_SEARCH_SWITCH,
+  SET_FETCHING_PICTURES_FALSE
 } from "./actionConstants";
-import {} from "./actionConstants";
-import {SET_FETCHING_PICTURES_FALSE} from "./actionConstants";
+
+export const toggleSearchSwitch = () => ({
+  type: TOGGLE_SEARCH_SWITCH,
+});
 
 export const getTokenUrlFailure = error => ({
   type: GET_TOKEN_URL_FAILURE,
