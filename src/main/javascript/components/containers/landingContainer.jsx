@@ -3,6 +3,7 @@ import {getTokenUrlRequest} from '../../actions/asyncActionCreators'
 import {setTokenStateFromLocalstorage} from "../../actions/actionCreators";
 import Landing from '../presentationals/pages/landing'
 import {cleanStateOnLocalStorage, readStateOnLocalStorage} from "../../actions/windowActions";
+import * as actions from '../../actions/actionCreators';
 
 const setStateFromLocalStorage = (dispatch) => {
   if (readStateOnLocalStorage() !== undefined) {
@@ -12,11 +13,13 @@ const setStateFromLocalStorage = (dispatch) => {
   }
 };
 
-const mapStateToProps = state => Object.assign({}, state.token);
+const mapStateToProps = state => ({...state.token, ...state.privacy});
 
 const mapDispatchToProps = (dispatch) => ({
   getInstaToken: (state) => getTokenUrlRequest(dispatch, state),
   setStateFromLocalStorage: () => setStateFromLocalStorage(dispatch),
+  togglePrivacySwitch: () => dispatch(actions.togglePrivacySwitch()),
+  toggleReadmeSwitch: () => dispatch(actions.toggleReadmeSwitch()),
 });
 
 export default connect(

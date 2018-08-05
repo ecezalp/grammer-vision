@@ -16,39 +16,29 @@ export const getTokenUrlRequest = (dispatch, state) => {
     });
 };
 
-export const getPictureDataFromInstagram = (dispatch, token, handleSuccess) => {
+const setPicturesFromLink = (url, dispatch, handleSuccess) => {
   dispatch(actions.setFetchingPicturesTrue());
-  return axios.get(`https://api.instagram.com/v1/users/self/media/recent?access_token=${token}`)
+  return axios.get(url)
     .then(response => {
-      dispatch(actions.setPicturesFromInsta(response.data));
-      dispatch(actions.setFetchingPicturesFalse());
       handleSuccess();
+      dispatch(actions.setPicturesFromInsta(response.data));
+      dispatch(actions.clearSearchInput());
     })
-    .catch(() => {
-      dispatch(actions.setFetchingPicturesFalse());
-    });
+    .catch(() => dispatch(actions.clearSearchInput()));
+};
+
+export const search = (dispatch, term, token) => {
+  const url = `https://api.instagram.com/v1/tags/${term.replace("#", "")}/media/recent?access_token=${token}`;
+  setPicturesFromLink(url, dispatch, () => {});
+};
+
+export const getPictureDataFromInstagram = (dispatch, token, handleSuccess) => {
+  const url = `https://api.instagram.com/v1/users/self/media/recent?access_token=${token}`;
+  setPicturesFromLink(url, dispatch, handleSuccess);
 };
 
 export const getPictureTags = (dispatch, picture) => {
   dispatch(actions.setFetchingTagsTrue());
   return axios.post(`/api/tags`, picture)
-    .then(response => {
-      dispatch(actions.setVisionTags(response.data));
-      dispatch(actions.setFetchingTagsFalse());
-    })
-    .catch(() => {
-      dispatch(actions.setFetchingTagsFalse());
-    });
-};
-
-export const search = (dispatch, term, token) => {
-  dispatch(actions.setFetchingPicturesTrue());
-  return axios.get(`https://instagram.com/graphql/query/?query_id=17888483320059182&variables={"id":"1951415043","first":20,"after":null}`)
-    .then(response => {
-      dispatch(actions.setPicturesFromInsta(response.data));
-      dispatch(actions.setFetchingPicturesFalse());
-    })
-    .catch(() => {
-      dispatch(actions.setFetchingPicturesFalse());
-    });
+    .then(response => dispatch(actions.setVisionTags(response.data)));
 };

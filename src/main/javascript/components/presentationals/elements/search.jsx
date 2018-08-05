@@ -1,22 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import {TextField} from "material-ui";
 import Button from '@material-ui/core/Button';
+import Switcher from './switcher';
 
 export default function Search({search, handleInputChange, searchInput, toggleSearchSwitch, isSearchShowing, tokenString}) {
 
   const switcher =
-    <div className="switcher"
-         onClick={toggleSearchSwitch}>
-      {isSearchShowing ? "HIDE" : "SEARCH"}
-    </div>;
+    <Switcher
+      onClick={toggleSearchSwitch}
+      isShowing={isSearchShowing}
+      onText="hide"
+      offText="search"
+    />;
 
   const icon = <i className="fas fa-2x fa-search"/>;
 
   const textField =
     <TextField
-      floatingLabelText={"@username"}
+      floatingLabelText={"#hashtag"}
       value={searchInput}
       onChange={handleInputChange}
     />;
@@ -27,12 +29,12 @@ export default function Search({search, handleInputChange, searchInput, toggleSe
     </Button>;
 
   const searchIfShowing = isSearchShowing &&
-    <div className="search-container">
+    <div className="search-field">
       {textField}
       {submit}
     </div>;
 
-  return <div className="search-top-container">
+  return <div className="search-container">
     {switcher}
     {searchIfShowing}
   </div>;

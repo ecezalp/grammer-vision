@@ -15,7 +15,7 @@ public class AppConfig {
       .apiKey(System.getenv("insta_api_key"))
       .apiSecret(System.getenv("insta_api_secret"))
       .scope("basic+public_content")
-      .callback("http://localhost:8080/api/callback")
+      .callback(System.getenv("vision_base_url") + "/api/callback")
       .build();
   }
 }

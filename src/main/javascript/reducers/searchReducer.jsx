@@ -1,4 +1,5 @@
 import {
+  CLEAR_SEARCH_INPUT,
   SET_INPUT_VALUE,
   TOGGLE_SEARCH_SWITCH,
 } from '../actions/actionConstants';
@@ -11,9 +12,11 @@ const initialState = {
 const search = (state = initialState, action) => {
   switch (action.type) {
     case SET_INPUT_VALUE:
-      return Object.assign({}, state, {searchInput: action.payload});
+      return ({...state, searchInput: action.payload});
+    case CLEAR_SEARCH_INPUT:
+      return ({...state, searchInput: ''});
     case TOGGLE_SEARCH_SWITCH:
-      return Object.assign({}, state, {isSearchShowing: !state.isSearchShowing});
+      return ({...state, isSearchShowing: !state.isSearchShowing});
     default:
       return state;
   }

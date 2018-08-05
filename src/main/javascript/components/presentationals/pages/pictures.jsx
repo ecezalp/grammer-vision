@@ -15,15 +15,23 @@ export default function Pictures({
 
   const isFetching = (isFetchingPictures || isFetchingTags);
 
-  const picture = pictures[activePictureIndex];
+  const placeholder = {
+    id: 'placeholder',
+    location: '',
+    url: '',
+    user: '',
+    tags: [],
+  };
 
-  const isIncrementable = (activePictureIndex < pictures.length);
+  const picture = pictures[activePictureIndex] || placeholder;
+
+  const isIncrementable = (activePictureIndex < pictures.length - 1);
 
   const isDecrementable = (activePictureIndex > 0);
 
   const getUpdatedIndex = (isIncrement) => {
-    if (isIncrement && isIncrementable) return activePictureIndex++;
-    if (isDecrementable) return activePictureIndex--;
+    if (isIncrement && isIncrementable) return activePictureIndex + 1;
+    if (!isIncrement && isDecrementable) return activePictureIndex - 1;
     return activePictureIndex;
   };
 
@@ -67,17 +75,17 @@ export default function Pictures({
   }
 
   return <div className="pictures-container">
-    <div className="left">
-      {getUserName(picture)}
-      {getPictureContainer(picture)}
-      {getLocation(picture)}
-      {arrowButtons}
-    </div>
-    <div className="right">
-      {tagList}
-      {search}
-    </div>
-  </div>;
+      <div className="left">
+        {getUserName(picture)}
+        {getPictureContainer(picture)}
+        {getLocation(picture)}
+        {arrowButtons}
+      </div>
+      <div className="right">
+        {tagList}
+        {search}
+      </div>
+    </div>;
 }
 
 Pictures.propTypes = {

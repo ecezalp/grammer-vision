@@ -1,14 +1,7 @@
 package com.grammarvision.demo.domain.service;
 
-import com.google.cloud.vision.v1.AnnotateImageRequest;
-import com.google.cloud.vision.v1.AnnotateImageResponse;
-import com.google.cloud.vision.v1.BatchAnnotateImagesResponse;
-import com.google.cloud.vision.v1.EntityAnnotation;
-import com.google.cloud.vision.v1.Feature;
-import com.google.cloud.vision.v1.Image;
-import com.google.cloud.vision.v1.ImageAnnotatorClient;
+import com.google.cloud.vision.v1.*;
 import com.google.protobuf.ByteString;
-import com.google.protobuf.Descriptors;
 import com.grammarvision.demo.domain.Picture;
 import com.grammarvision.demo.domain.TagResponse;
 import org.springframework.stereotype.Service;
@@ -19,9 +12,7 @@ import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import static java.util.Collections.singletonList;
 import static java.util.stream.Collectors.toList;
@@ -37,7 +28,7 @@ public class LoadingService {
   }
 
 
-  public List<TagResponse> getAnnotations(List<AnnotateImageResponse> responses) {
+  private List<TagResponse> getAnnotations(List<AnnotateImageResponse> responses) {
     List<List<EntityAnnotation>> labelsList = responses.stream().map(response -> response.getLabelAnnotationsList()).collect(toList());
     List<TagResponse> tagList = new ArrayList<>();
     for (List<EntityAnnotation> annotations : labelsList) {
@@ -52,7 +43,7 @@ public class LoadingService {
     return tagList;
   }
 
-  public BatchAnnotateImagesResponse getImageResponseFromBytes(ImageAnnotatorClient vision, byte[] bytes) {
+  private BatchAnnotateImagesResponse getImageResponseFromBytes(ImageAnnotatorClient vision, byte[] bytes) {
     ByteString imgBytes = ByteString.copyFrom(bytes);
     AnnotateImageRequest request = getImageRequestFromString(imgBytes);
     BatchAnnotateImagesResponse response = null;
@@ -67,14 +58,13 @@ public class LoadingService {
   private AnnotateImageRequest getImageRequestFromString(ByteString byteString) {
     Image img = Image.newBuilder().setContent(byteString).build();
     Feature feat = Feature.newBuilder().setType(Feature.Type.LABEL_DETECTION).build();
-    AnnotateImageRequest request = AnnotateImageRequest.newBuilder()
+    return AnnotateImageRequest.newBuilder()
       .addFeatures(feat)
       .setImage(img)
       .build();
-    return request;
   }
 
-  public byte[] getBytesFromUrl(String urlString) {
+  private byte[] getBytesFromUrl(String urlString) {
     URL url = null;
     try {
       url = new URL(urlString);

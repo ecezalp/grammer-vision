@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 
-export default function ArrowButton({isIncrement, onButtonClick}) {
+export default function ArrowButton({isIncrement, isDisabled, onButtonClick}) {
 
   const icon = isIncrement ?
     <i className="fas fa-arrow-right"/> :
@@ -12,6 +12,7 @@ export default function ArrowButton({isIncrement, onButtonClick}) {
 
   return <Button className={className}
                  variant="outlined"
+                 disabled={isDisabled}
                  onClick={() => onButtonClick(isIncrement)}>
     {icon}
   </Button>;
@@ -20,4 +21,5 @@ export default function ArrowButton({isIncrement, onButtonClick}) {
 ArrowButton.propTypes = {
   isIncrement: PropTypes.bool,
   onButtonClick: PropTypes.func,
+  isDisabled: PropTypes.bool,
 };

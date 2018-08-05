@@ -12,10 +12,8 @@ const initialState = {
 
 const handleSetVisionTags = (state, payload) => {
   state.pictures[state.activePictureIndex].tags =
-    payload.length > 0 ?
-      payload :
-      [Object.assign({}, {score: 0, name: "NO TAGS FOUND"})];
-  return state;
+    payload.length > 0 ? payload : [{score: 0, name: "NO TAGS FOUND"}];
+  return {...state, isFetchingTags: false};
 };
 
 const pictures = (state = initialState, action) => {
@@ -23,17 +21,21 @@ const pictures = (state = initialState, action) => {
     case SET_VISION_TAGS:
       return handleSetVisionTags(state, action.payload);
     case SET_FETCHING_PICTURES_TRUE:
-      return Object.assign({}, state, {isFetchingPictures: true});
+      return ({...state, isFetchingPictures: true});
     case SET_FETCHING_PICTURES_FALSE:
-      return Object.assign({}, state, {isFetchingPictures: false});
+      return ({...state, isFetchingPictures: false});
     case SET_FETCHING_TAGS_TRUE:
-      return Object.assign({}, state, {isFetchingTags: true});
+      return ({...state, isFetchingTags: true});
     case SET_FETCHING_TAGS_FALSE:
-      return Object.assign({}, state, {isFetchingTags: false});
+      return ({...state, isFetchingTags: false});
     case SET_PICTURES_FROM_INSTA:
-      return Object.assign({}, state, {pictures: action.payload});
+      return ({...state,
+        pictures: action.payload,
+        activePictureIndex: 0,
+        isFetchingPictures: false
+      });
     case SET_ACTIVE_PICTURE_INDEX:
-      return Object.assign({}, state, {activePictureIndex: action.payload});
+      return ({...state, activePictureIndex: action.payload});
     default:
       return state;
   }

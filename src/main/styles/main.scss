@@ -5,6 +5,8 @@ $paper_shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 $link_color: rgb(90, 130, 236);
 $dark_font_color: rgba(0,0,0,0.75);
 
+@import "spinner";
+
 .app-container {
   background-image: url("dust_scratches.png");
   height: 100%;
@@ -15,6 +17,29 @@ $dark_font_color: rgba(0,0,0,0.75);
   letter-spacing: 0.25px;
   font-size: 1.1rem;
   font-family: "Quicksand";
+
+  .switcher {
+    font-size: 1rem;
+    color: #5a82ec;
+    cursor: pointer;
+    margin-top: 20px;
+    margin-bottom: 5px;
+  }
+
+  .privacy-policy {
+    width: 50%;
+    font-size: 0.8rem;
+    display: flex;
+    flex-direction: column;
+
+    div {
+      padding: 5px;
+    }
+
+    i {
+      padding-right: 5px;
+    }
+  }
 
   .navbar {
     position: absolute;
@@ -35,18 +60,6 @@ $dark_font_color: rgba(0,0,0,0.75);
       div {
         margin: 10px;
       }
-      .blue {
-        color: $link_color;
-      }
-      .red {
-        color: rgb(202, 69, 57);
-      }
-      .green {
-        color: rgb(103, 166, 89);
-      }
-      .yellow {
-        color: rgb(232, 185, 45);
-      }
 
       .title-1 {
         display: flex;
@@ -66,10 +79,11 @@ $dark_font_color: rgba(0,0,0,0.75);
   .landing-container {
     width: 100%;
     height: 100%;
+    padding-top: $navbar_height;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: space-evenly;
 
     .login-button {
       margin-bottom: 6vh;
@@ -77,7 +91,6 @@ $dark_font_color: rgba(0,0,0,0.75);
 
     .source-link {
       text-decoration: none;
-      padding-top: 30vh;
       margin-bottom: 8vh;
 
       i {
@@ -93,7 +106,7 @@ $dark_font_color: rgba(0,0,0,0.75);
     justify-content: center;
     margin-top: $navbar_height;
 
-    .search-container, .taglist-container {
+    .search-field, .taglist-container {
       background-color: white;
       box-shadow: $paper_shadow;
       width: 100%;
@@ -102,7 +115,7 @@ $dark_font_color: rgba(0,0,0,0.75);
     .left {
       width: 30%;
       padding-top: 3vh;
-      padding-right: 3vw;
+      padding-right: 2vw;
       display: flex;
       flex-direction: column;
 
@@ -147,7 +160,7 @@ $dark_font_color: rgba(0,0,0,0.75);
     .right {
       width: 25%;
       margin-top: 8vh;
-      margin-left: 3vw;
+      margin-left: 2vw;
 
       .taglist-container {
         height: fit-content;
@@ -179,22 +192,13 @@ $dark_font_color: rgba(0,0,0,0.75);
         }
       }
 
-      .search-top-container {
+      .search-container {
         display: flex;
         flex-direction: column;
         width: 100%;
-
-        .switcher {
-          align-self: flex-end;
-          font-size: 1rem;
-          color: #5a82ec;
-          cursor: pointer;
-          margin-top: 20px;
-          margin-bottom: 5px;
-        }
       }
 
-      .search-container {
+      .search-field {
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -207,6 +211,23 @@ $dark_font_color: rgba(0,0,0,0.75);
       }
     }
   }
+}
+
+.blue {
+  color: $link_color;
+}
+.red {
+  color: rgb(202, 69, 57);
+}
+.green {
+  color: rgb(103, 166, 89);
+}
+.yellow {
+  color: rgb(232, 185, 45);
+}
+
+.magenta {
+  color: magenta !important;
 }
 
 body {

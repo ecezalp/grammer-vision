@@ -1,6 +1,6 @@
 import React from 'react';
-import Spinner from 'react-spinkit';
 import PropTypes from 'prop-types';
+import Spinner from "./spinner";
 
 export default function TagList({isFetching, tags}) {
 
@@ -41,9 +41,7 @@ export default function TagList({isFetching, tags}) {
     {tags.map(getTag)}
   </div>;
 
-  const spinner = <div className="spinner-container">
-    <Spinner name="wave"/>
-  </div>;
+  const spinner = <Spinner/>;
 
   return <div className="taglist-container">
     {isFetching ? spinner : allTags}

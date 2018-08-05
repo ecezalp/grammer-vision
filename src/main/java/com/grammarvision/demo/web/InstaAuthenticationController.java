@@ -30,6 +30,6 @@ public class InstaAuthenticationController {
     Verifier verifier = new Verifier(code);
     Token token = instagramService.getAccessToken(verifier);
     session.setAttribute("grammar-vision", token.getToken());
-    response.sendRedirect("http://localhost:8080/token?tokenString=" + token.getToken());
+    response.sendRedirect(System.getenv("vision_base_url") + "/token?tokenString=" + token.getToken());
   }
 }

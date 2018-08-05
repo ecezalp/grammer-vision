@@ -17,7 +17,7 @@ const token = (state = initialState, action) => {
     case GET_TOKEN_URL_FAILURE:
       return {...state, url: ''};
     case SET_TOKEN_STATE_FROM_LOCALSTORAGE:
-      return {...state, tokenString: action.payload['token']};
+      return {...state, tokenString: action.payload};
     default:
       return state;
   }
