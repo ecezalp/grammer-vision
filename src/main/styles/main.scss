@@ -28,24 +28,23 @@ $dark_font_color: rgba(0, 0, 0, 0.75);
     margin-bottom: 5px;
   }
 
+  .readme, .privacy-policy {
+    min-width: 510px;
+  }
+
   .readme {
-    width: 30%;
+    width: 40%;
     height: 50%;
     font-size: 1rem;
     display: flex;
     flex-direction: column;
+    align-items: center;
     justify-content: space-evenly;
 
-    .text {
-      padding-bottom: 2vh;
-      i {
-        margin-right: 5px;
-      }
-    }
-
-    .checkbox-container {
+    .mini-form-container {
+      width: 80%;
       display: flex;
-      align-items: center;
+      justify-content: center;
     }
 
     .demo-account-container {
@@ -68,6 +67,20 @@ $dark_font_color: rgba(0, 0, 0, 0.75);
       }
     }
 
+    .welcome-text {
+      width: 80%;
+
+      i {
+        margin-right: 5px;
+      }
+    }
+
+    .checkbox-container {
+      display: flex;
+      align-items: center;
+      min-width: 235px;
+    }
+
     .buttons-container {
       display: flex;
       justify-content: center;
@@ -79,10 +92,11 @@ $dark_font_color: rgba(0, 0, 0, 0.75);
   }
 
   .privacy-policy {
-    width: 50%;
-    font-size: 0.8rem;
+    width: 30%;
+    font-size: 0.75rem;
     display: flex;
     flex-direction: column;
+    text-align: justify;
 
     div {
       padding: 5px;
@@ -136,10 +150,6 @@ $dark_font_color: rgba(0, 0, 0, 0.75);
     align-items: center;
     align-self: flex-end;
     justify-content: space-evenly;
-
-    .login-button {
-      margin-bottom: 6vh;
-    }
 
     .source-link {
       text-decoration: none;

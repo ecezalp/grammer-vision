@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 export default function Checkbox({isChecked, handleClick}) {
+
   return <div className="checkbox-container coloured">
     <div className="checkbox">
       <label>

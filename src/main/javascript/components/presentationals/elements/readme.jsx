@@ -6,31 +6,26 @@ import DemoLoginInfo from './demoLoginInfo';
 
 export default function Readme({isLoginEnabled, checkbox, handleDemoClick, getInstaToken, tokenString, isFetchingToken}) {
 
-  const icon = <i key="magenta-icon" className="far fa-gem magenta"/>;
+  const icon = <i className="far fa-gem magenta"/>;
 
-  const handleSubmitClick = () => {
+  const handleInstagramLoginClick = () => {
     if (tokenString === "") getInstaToken(tokenString, isFetchingToken);
   };
 
-  const demoButton = <div className="login-button">
-    <Button
-      variant="contained"
-      color="secondary"
-      onClick={handleDemoClick}
-      disabled={isLoginEnabled}>
-      Quick Login
-    </Button>
-  </div>;
+  const getButton = (color, onClick, disabled, text) =>
+    <div key={`button-${color}`}>
+      <Button
+        variant="contained"
+        color={color}
+        onClick={onClick}
+        disabled={disabled}>
+        {text}
+      </Button>
+    </div>;
 
-  const loginButton = <div className="login-button">
-    <Button
-      variant="contained"
-      color="primary"
-      onClick={handleSubmitClick}
-      disabled={!isLoginEnabled}>
-      Login via Instagram
-    </Button>
-  </div>;
+  const demoButton = getButton("secondary", handleDemoClick, isLoginEnabled, "Quick Login");
+
+  const loginButton = getButton("primary", handleInstagramLoginClick, !isLoginEnabled, "Login via Instagram");
 
   const buttons = <div className="buttons-container">
     {demoButton}
@@ -49,14 +44,19 @@ export default function Readme({isLoginEnabled, checkbox, handleDemoClick, getIn
     return getText([text]);
   };
 
-  const checkboxOrLoginInfo = checkbox.isHidden ? <DemoLoginInfo/> : <CheckboxContainer/>;
+  const welcome = <div className="welcome-text">
+    {getSandboxModeText()}
+    <br/>
+    {getRegisterOrDemoText()}
+  </div>;
+
+  const miniForm = <div className="mini-form-container">
+    {checkbox.isHidden ? <DemoLoginInfo/> : <CheckboxContainer/>}
+  </div>;
 
   return <div className="readme">
-    <div className="welcome-text">
-      {getSandboxModeText()}
-      {getRegisterOrDemoText()}
-    </div>
-    {checkboxOrLoginInfo}
+    {welcome}
+    {miniForm}
     {buttons}
   </div>
 }
