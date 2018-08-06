@@ -1,9 +1,19 @@
 import {connect} from 'react-redux'
 import Readme from "../presentationals/elements/readme";
+import {getTokenUrlRequest} from "../../actions/asyncActionCreators";
+import * as actions from "../../actions/actionCreators";
 
-const mapStateToProps = state => ({...state.privacy});
+const mapStateToProps = state => ({...state.privacy, ...state.token});
+
+const mapDispatchToProps = dispatch => ({
+  getInstaToken: (state) => getTokenUrlRequest(dispatch, state),
+  handleDemoClick: () => {
+    dispatch(actions.setCheckboxHidden(true));
+    dispatch(actions.setLoginButton(true));
+  }
+});
 
 export default connect(
   mapStateToProps,
-  null,
+   mapDispatchToProps,
 )(Readme);

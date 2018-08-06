@@ -14,21 +14,33 @@ import {
   SET_INPUT_VALUE,
   TOGGLE_SEARCH_SWITCH,
   TOGGLE_PRIVACY_SWITCH,
-  TOGGLE_README_SWITCH,
+  SET_LOGIN_BUTTON,
+  SET_CHECKBOX_CHECKED,
+  SET_CHECKBOX_HIDDEN,
 } from "./actionConstants";
 
 export const toggleSearchSwitch = () => ({
   type: TOGGLE_SEARCH_SWITCH,
 });
 
+export const setCheckboxChecked = (isChecked) => ({
+  type: SET_CHECKBOX_CHECKED,
+  payload: isChecked,
+});
+
+export const setCheckboxHidden = (isHidden) => ({
+  type: SET_CHECKBOX_HIDDEN,
+  payload: isHidden,
+});
+
+export const setLoginButton = (isEnabled) => ({
+  type: SET_LOGIN_BUTTON,
+  payload: isEnabled,
+});
+
 export const togglePrivacySwitch = () => ({
   type: TOGGLE_PRIVACY_SWITCH,
 });
-
-export const toggleReadmeSwitch = () => ({
-  type: TOGGLE_README_SWITCH,
-});
-
 
 export const getTokenUrlFailure = error => ({
   type: GET_TOKEN_URL_FAILURE,

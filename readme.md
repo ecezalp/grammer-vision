@@ -18,5 +18,6 @@ Brings together Google Vision API and Instagram API to generate tags from Instag
 
 -   Spring Framework
 -   Google App Engine application (hosted on Google Cloud)
+-   Google Vision API integration
 -   token-based authentication for Instagram
 -   maven for build automation

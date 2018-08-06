@@ -27,7 +27,6 @@ public class LoadingService {
     return getAnnotations(response.getResponsesList());
   }
 
-
   private List<TagResponse> getAnnotations(List<AnnotateImageResponse> responses) {
     List<List<EntityAnnotation>> labelsList = responses.stream().map(response -> response.getLabelAnnotationsList()).collect(toList());
     List<TagResponse> tagList = new ArrayList<>();

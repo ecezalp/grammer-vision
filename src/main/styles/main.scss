@@ -3,9 +3,10 @@ $submit_button_color: rgb(221, 218, 210);
 $navbar_height: 110px;
 $paper_shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 $link_color: rgb(90, 130, 236);
-$dark_font_color: rgba(0,0,0,0.75);
+$dark_font_color: rgba(0, 0, 0, 0.75);
 
 @import "spinner";
+@import "checkbox";
 
 .app-container {
   background-image: url("dust_scratches.png");
@@ -16,7 +17,8 @@ $dark_font_color: rgba(0,0,0,0.75);
   overflow: hidden;
   letter-spacing: 0.25px;
   font-size: 1.1rem;
-  font-family: "Quicksand";
+  font-family: "Quicksand", sans-serif;
+  -webkit-font-smoothing: antialiased;
 
   .switcher {
     font-size: 1rem;
@@ -24,6 +26,56 @@ $dark_font_color: rgba(0,0,0,0.75);
     cursor: pointer;
     margin-top: 20px;
     margin-bottom: 5px;
+  }
+
+  .readme {
+    width: 30%;
+    height: 50%;
+    font-size: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+
+    .text {
+      padding-bottom: 2vh;
+      i {
+        margin-right: 5px;
+      }
+    }
+
+    .checkbox-container {
+      display: flex;
+      align-items: center;
+    }
+
+    .demo-account-container {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+
+      .demo-account-info {
+        padding: 20px;
+        background-color: white;
+        box-shadow: $paper_shadow;
+
+        div {
+          padding: 0 5px;
+        }
+
+        .demo-account-username-container, .demo-account-password-container {
+          display: flex;
+        }
+      }
+    }
+
+    .buttons-container {
+      display: flex;
+      justify-content: center;
+
+      div {
+        margin: 3px;
+      }
+    }
   }
 
   .privacy-policy {
@@ -78,11 +130,11 @@ $dark_font_color: rgba(0,0,0,0.75);
 
   .landing-container {
     width: 100%;
-    height: 100%;
-    padding-top: $navbar_height;
+    height: calc(100% - 110px);
     display: flex;
     flex-direction: column;
     align-items: center;
+    align-self: flex-end;
     justify-content: space-evenly;
 
     .login-button {
@@ -216,18 +268,21 @@ $dark_font_color: rgba(0,0,0,0.75);
 .blue {
   color: $link_color;
 }
+
 .red {
   color: rgb(202, 69, 57);
 }
+
 .green {
   color: rgb(103, 166, 89);
 }
+
 .yellow {
   color: rgb(232, 185, 45);
 }
 
 .magenta {
-  color: magenta !important;
+  color: #E2325A !important;
 }
 
 body {

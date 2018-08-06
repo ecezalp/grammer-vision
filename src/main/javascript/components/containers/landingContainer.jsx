@@ -1,5 +1,4 @@
 import {connect} from 'react-redux'
-import {getTokenUrlRequest} from '../../actions/asyncActionCreators'
 import {setTokenStateFromLocalstorage} from "../../actions/actionCreators";
 import Landing from '../presentationals/pages/landing'
 import {cleanStateOnLocalStorage, readStateOnLocalStorage} from "../../actions/windowActions";
@@ -16,10 +15,8 @@ const setStateFromLocalStorage = (dispatch) => {
 const mapStateToProps = state => ({...state.token, ...state.privacy});
 
 const mapDispatchToProps = (dispatch) => ({
-  getInstaToken: (state) => getTokenUrlRequest(dispatch, state),
   setStateFromLocalStorage: () => setStateFromLocalStorage(dispatch),
   togglePrivacySwitch: () => dispatch(actions.togglePrivacySwitch()),
-  toggleReadmeSwitch: () => dispatch(actions.toggleReadmeSwitch()),
 });
 
 export default connect(

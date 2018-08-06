@@ -10,21 +10,9 @@ export default function Landing(props) {
 
   props.setStateFromLocalStorage();
 
-  const {isFetchingToken, getInstaToken, tokenString, togglePrivacySwitch, toggleReadmeSwitch, isPrivacyShowing, isReadmeShowing} = props;
+  const {isFetchingToken, togglePrivacySwitch, isPrivacyShowing} = props;
 
   const spinner = isFetchingToken && <Spinner/>;
-
-  const handleSubmitClick = () => {
-    if (tokenString === "") getInstaToken(tokenString, isFetchingToken);
-  };
-
-  const loginButton = <div className="login-button" style={{visibility: isReadmeShowing ? "inherit" : "hidden"}}>
-    <Button variant="contained"
-            color="primary"
-            onClick={handleSubmitClick}
-            className={''}>
-      Login via Instagram
-    </Button></div>;
 
   const sourceButton = <a className="source-link" href="https://github.com/ecezalp/grammer-vision">
     <Button color="primary">
@@ -40,24 +28,13 @@ export default function Landing(props) {
       offText="privacy policy"
     />;
 
-  const readmeSwitch =
-    <Switcher
-      onClick={toggleReadmeSwitch}
-      isShowing={isReadmeShowing}
-      onText="hide"
-      offText="read me first"
-      isAccented={true}
-    />;
-
   const privacyPolicy = <PrivacyPolicyContainer/>;
 
   const readme = <ReadmeContainer/>;
 
   return <div className="landing-container">
     {spinner}
-    {readmeSwitch}
     {readme}
-    {loginButton}
     {privacyPolicy}
     {privacySwitch}
     {sourceButton}
@@ -65,10 +42,8 @@ export default function Landing(props) {
 }
 
 Landing.propTypes = {
-  getInstaToken: PropTypes.func.isRequired,
   setStateFromLocalStorage: PropTypes.func.isRequired,
   isFetchingToken: PropTypes.bool.isRequired,
-  tokenString: PropTypes.string,
   togglePrivacySwitch: PropTypes.func.isRequired,
   isPrivacyShowing: PropTypes.bool,
   isReadmeShowing: PropTypes.bool,
