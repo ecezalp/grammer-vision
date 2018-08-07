@@ -13,7 +13,14 @@ const mapDispatchToProps = dispatch => ({
   }
 });
 
+const ownProps = (stateProps, dispatchProps, ownProps) => ({
+  ...stateProps,
+  ...dispatchProps,
+  ...ownProps,
+});
+
 export default connect(
   mapStateToProps,
-   mapDispatchToProps,
+  mapDispatchToProps,
+  ownProps,
 )(Readme);

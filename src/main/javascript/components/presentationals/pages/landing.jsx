@@ -10,9 +10,15 @@ export default function Landing(props) {
 
   props.setStateFromLocalStorage();
 
-  const {isFetchingToken, togglePrivacySwitch, isPrivacyShowing} = props;
+  console.log(props);
+
+  const {isFetchingToken, togglePrivacySwitch, isPrivacyShowing, readmeProps} = props;
 
   const spinner = isFetchingToken && <Spinner/>;
+
+  const privacyPolicy = <PrivacyPolicyContainer/>;
+
+  const readme = <ReadmeContainer {...readmeProps}/>;
 
   const sourceButton = <a className="source-link" href="https://github.com/ecezalp/grammer-vision">
     <Button color="primary">
@@ -27,10 +33,6 @@ export default function Landing(props) {
       onText="hide"
       offText="privacy policy"
     />;
-
-  const privacyPolicy = <PrivacyPolicyContainer/>;
-
-  const readme = <ReadmeContainer/>;
 
   return <div className="landing-container">
     {spinner}
@@ -47,4 +49,5 @@ Landing.propTypes = {
   togglePrivacySwitch: PropTypes.func.isRequired,
   isPrivacyShowing: PropTypes.bool,
   isReadmeShowing: PropTypes.bool,
+  getReadmeChildren: PropTypes.func,
 };

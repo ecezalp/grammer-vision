@@ -12,14 +12,21 @@ const setStateFromLocalStorage = (dispatch) => {
   }
 };
 
-const mapStateToProps = state => ({...state.token, ...state.privacy});
+const mapStateToProps = state => ({...state.token, ...state.privacy, ...state.checkbox});
 
 const mapDispatchToProps = (dispatch) => ({
   setStateFromLocalStorage: () => setStateFromLocalStorage(dispatch),
   togglePrivacySwitch: () => dispatch(actions.togglePrivacySwitch()),
 });
 
+const injectedProps = (stateProps, dispatchProps, ownProps) => ({
+  ...stateProps,
+  ...dispatchProps,
+  ...ownProps,
+});
+
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
+  injectedProps
 )(Landing);

@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
-import CheckboxContainer from '../../containers/checkboxContainer';
-import DemoLoginInfo from './demoLoginInfo';
+import DemoLoginInfo from "./demoLoginInfo";
 
-export default function Readme({isLoginEnabled, checkbox, handleDemoClick, getInstaToken, tokenString, isFetchingToken}) {
-
-  const icon = <i className="far fa-gem magenta"/>;
+export default function Readme({
+                                 isLoginEnabled, handleDemoClick, getInstaToken,
+                                 tokenString, isFetchingToken, checkbox,
+                                 defaultPanel, formAlternative
+                               }) {
 
   const handleInstagramLoginClick = () => {
     if (tokenString === "") getInstaToken(tokenString, isFetchingToken);
@@ -32,31 +33,13 @@ export default function Readme({isLoginEnabled, checkbox, handleDemoClick, getIn
     {loginButton}
   </div>;
 
-  const getText = (children) => <div className="text">{children}</div>;
-
-  const getSandboxModeText = () => {
-    let text = <span key="sandbox">This app is in <strong>sandbox</strong> mode.</span>;
-    return getText([icon, text]);
-  };
-
-  const getRegisterOrDemoText = () => {
-    let text = <span key="register">You must <a href="/register">register</a> to my sandbox, or click <strong>quick login</strong>!</span>;
-    return getText([text]);
-  };
-
-  const welcome = <div className="welcome-text">
-    {getSandboxModeText()}
-    <br/>
-    {getRegisterOrDemoText()}
-  </div>;
-
-  const miniForm = <div className="mini-form-container">
-    {checkbox.isHidden ? <DemoLoginInfo/> : <CheckboxContainer/>}
+  const miniform = <div className="mini-form-container">
+    {checkbox.isHidden ? <DemoLoginInfo/> : formAlternative}
   </div>;
 
   return <div className="readme">
-    {welcome}
-    {miniForm}
+    {defaultPanel}
+    {miniform}
     {buttons}
   </div>
 }
@@ -68,4 +51,5 @@ Readme.propTypes = {
   handleDemoClick: PropTypes.func,
   tokenString: PropTypes.string,
   checkbox: PropTypes.object,
+  children: PropTypes.arrayOf(PropTypes.object),
 };
