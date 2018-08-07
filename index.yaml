@@ -1,8 +1,0 @@
-runtime: java8
-env: flex
-
-skip_files:
- - ^node_modules$
-
-includes:
-- secrets.yaml

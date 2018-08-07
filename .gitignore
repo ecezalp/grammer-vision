@@ -5,7 +5,11 @@ mvnw
 mvnw.cmd
 dist
 node_modules
-secrets.yaml
+
+./WEB-INF/appengine-web.xml
+./src/main/webapp/appengine-web.xml
+./src/main/webapp/WEB-INF
+./src/main/webapp/WEB-INF/appengine-web.xml
 
 ### STS ###
 .apt_generated

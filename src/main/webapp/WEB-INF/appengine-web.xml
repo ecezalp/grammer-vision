@@ -4,4 +4,9 @@
     <threadsafe>true</threadsafe>
     <runtime>java8</runtime>
     <sessions-enabled>true</sessions-enabled>
+    <env-variables>
+        <env-var name="INSTA_API_KEY" value="ee271e5b982f4e9385e400f67095e15a" />
+        <env-var name="INSTA_API_SECRET" value="f79e95af6ec6440bad64efe4ca639c52" />
+        <env-var name="VISION_BASE_URL" value="https://grammer-vision.appspot.com" />
+    </env-variables>
 </appengine-web-app>

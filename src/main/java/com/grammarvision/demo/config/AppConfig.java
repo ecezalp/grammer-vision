@@ -12,10 +12,10 @@ public class AppConfig {
   @Bean
   public InstagramService instagramService() {
     return new InstagramAuthService()
-      .apiKey(System.getenv("insta_api_key"))
-      .apiSecret(System.getenv("insta_api_secret"))
+      .apiKey(System.getenv("INSTA_API_KEY"))
+      .apiSecret(System.getenv("INSTA_API_SECRET"))
       .scope("basic+public_content")
-      .callback(System.getenv("vision_base_url") + "/api/callback")
+      .callback(System.getenv("VISION_BASE_URL") + "/api/callback")
       .build();
   }
 }
