@@ -5,6 +5,7 @@ mvnw
 mvnw.cmd
 dist
 node_modules
+secrets.yaml
 
 ### STS ###
 .apt_generated
