@@ -6,41 +6,42 @@ import ReadmeContainer from '../../containers/readmeContainer';
 import Button from '@material-ui/core/Button';
 import PropTypes from 'prop-types';
 
-export default function Landing(props) {
+export default class Landing extends React.Component {
 
-  props.setStateFromLocalStorage();
+  componentDidMount() {
+    this.props.setStateFromLocalStorage();
+  }
 
-  console.log(props);
+  getSpinner = isFetchingToken => isFetchingToken && <Spinner/>;
 
-  const {isFetchingToken, togglePrivacySwitch, isPrivacyShowing, readmeProps} = props;
+  getReadmeContainer = (props) => <ReadmeContainer {...props}/>;
 
-  const spinner = isFetchingToken && <Spinner/>;
+  getPrivacyPolicyContainer = () => <PrivacyPolicyContainer/>;
 
-  const privacyPolicy = <PrivacyPolicyContainer/>;
-
-  const readme = <ReadmeContainer {...readmeProps}/>;
-
-  const sourceButton = <a className="source-link" href="https://github.com/ecezalp/grammer-vision">
+  getSourceButton = () => <a className="source-link" href="https://github.com/ecezalp/grammer-vision">
     <Button color="primary">
       <i className="fab fa-2x fa-github-alt"/>
     </Button>
   </a>;
 
-  const privacySwitch =
-    <Switcher
-      onClick={togglePrivacySwitch}
-      isShowing={isPrivacyShowing}
-      onText="hide"
-      offText="privacy policy"
-    />;
+  getPrivacySwitch = (togglePrivacySwitch, isPrivacyShowing) => <Switcher
+    handleClick={togglePrivacySwitch}
+    isShowing={isPrivacyShowing}
+    onText="hide"
+    offText="privacy policy"
+  />;
 
-  return <div className="landing-container">
-    {spinner}
-    {readme}
-    {privacyPolicy}
-    {privacySwitch}
-    {sourceButton}
-  </div>;
+  render() {
+    const {isFetchingToken, togglePrivacySwitch, isPrivacyShowing, readmeProps} = this.props;
+
+    return <div className="landing-container">
+      {this.getSpinner(isFetchingToken)}
+      {this.getReadmeContainer(readmeProps)}
+      {this.getPrivacyPolicyContainer()}
+      {this.getPrivacySwitch(togglePrivacySwitch, isPrivacyShowing)}
+      {this.getSourceButton()}
+    </div>;
+  }
 }
 
 Landing.propTypes = {

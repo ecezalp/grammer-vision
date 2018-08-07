@@ -27,7 +27,7 @@ const WBBPACK_SRC_CONFIG = {
         loader: 'babel-loader',
         exclude: /node_modules/,
         query: {
-          presets: ['react', 'env', 'stage-3']
+          presets: ['react', 'env', 'stage-2']
         }
       }, {
         test: /\.json$/,

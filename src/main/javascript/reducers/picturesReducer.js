@@ -16,10 +16,15 @@ const handleSetVisionTags = (state, payload) => {
   return {...state, isFetchingTags: false};
 };
 
+const handleSetPicturesFromInsta = (state, payload) => ({
+  ...state,
+  pictures: payload,
+  activePictureIndex: 0,
+  isFetchingPictures: false
+});
+
 const pictures = (state = initialState, action) => {
   switch (action.type) {
-    case SET_VISION_TAGS:
-      return handleSetVisionTags(state, action.payload);
     case SET_FETCHING_PICTURES_TRUE:
       return ({...state, isFetchingPictures: true});
     case SET_FETCHING_PICTURES_FALSE:
@@ -28,14 +33,12 @@ const pictures = (state = initialState, action) => {
       return ({...state, isFetchingTags: true});
     case SET_FETCHING_TAGS_FALSE:
       return ({...state, isFetchingTags: false});
-    case SET_PICTURES_FROM_INSTA:
-      return ({...state,
-        pictures: action.payload,
-        activePictureIndex: 0,
-        isFetchingPictures: false
-      });
     case SET_ACTIVE_PICTURE_INDEX:
       return ({...state, activePictureIndex: action.payload});
+    case SET_VISION_TAGS:
+      return handleSetVisionTags(state, action.payload);
+    case SET_PICTURES_FROM_INSTA:
+      return handleSetPicturesFromInsta(state, action.payload);
     default:
       return state;
   }

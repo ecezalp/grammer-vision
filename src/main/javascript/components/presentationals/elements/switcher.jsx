@@ -1,23 +1,39 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export default function Switcher({onClick, isShowing, onText, offText, isAccented}) {
+export default function Switcher({handleClick, isShowing, onText, offText, isAccented, isDisabled, disabledTitle}) {
 
-  const text = isShowing ? onText : offText;
+  const text =
+    isShowing ?
+      isDisabled ?
+        disabledTitle : onText : offText;
 
-  const className = isAccented ? "switcher magenta" : "switcher";
+  const disabledClickHandler = () => {
+    handleClick();
+    setTimeout(() => {
+      handleClick();
+    }, 2000);
+  };
+
+  const className =
+    isAccented ? "switcher magenta" :
+      isDisabled ? "switcher gray" :
+        "switcher";
 
   return <div className={className}
-              onClick={onClick}>
+              title={isDisabled ? disabledTitle : text}
+              onClick={!isDisabled? handleClick : disabledClickHandler}>
     {text.toUpperCase()}
   </div>;
 }
 
 Switcher.propTypes = {
-  onClick: PropTypes.func.isRequired,
-  isShowing: PropTypes.bool,
+  handleClick: PropTypes.func.isRequired,
+  isShowing: PropTypes.bool.isRequired,
   onText: PropTypes.string.isRequired,
   offText: PropTypes.string.isRequired,
   isAccented: PropTypes.bool,
+  isDisabled: PropTypes.bool,
+  disabledTitle: PropTypes.string,
 };
 

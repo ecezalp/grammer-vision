@@ -13,7 +13,13 @@ const mapDispatchToProps = (dispatch) => ({
   search: (term, tokenString) => search(dispatch, term, tokenString),
 });
 
+const ownProps = (stateProps, dispatchProps) => ({
+  ...stateProps,
+  ...dispatchProps,
+});
+
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
+  ownProps,
 )(Search);

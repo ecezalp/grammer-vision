@@ -1,18 +1,13 @@
 import React from 'react';
 
-import CheckboxContainer from '../containers/checkboxContainer';
-
 export default function withWelcome(BaseContainer) {
   const welcomeProps = {
-    readmeProps: {
-      defaultPanel: welcome,
-      formAlternative: <CheckboxContainer/>,
-    }
+    readmeProps: {defaultPanel},
   };
   return <BaseContainer {...welcomeProps} />;
 }
 
-const icon = <i className="far fa-gem magenta"/>;
+const icon = <i key="i-magenta" className="far fa-gem magenta"/>;
 
 const getText = (children) =>
   <div className="text">{children}</div>;
@@ -28,7 +23,7 @@ const getRegisterOrDemoText = () => {
   return getText([text]);
 };
 
-const welcome =
+const defaultPanel =
   <div className="welcome-text">
     {getSandboxModeText()}
     <br/>

@@ -47,6 +47,29 @@ $dark_font_color: rgba(0, 0, 0, 0.75);
       justify-content: center;
     }
 
+    .steps-container {
+      display: flex;
+      justify-content: space-around;
+      width: 80%;
+
+      .step {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 25%;
+
+        .step-count {
+          font-size: 2rem;
+        }
+
+        .step-text span {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+      }
+    }
+
     .demo-account-container {
       display: flex;
       flex-direction: column;
@@ -293,6 +316,10 @@ $dark_font_color: rgba(0, 0, 0, 0.75);
 
 .magenta {
   color: #E2325A !important;
+}
+
+.gray {
+  color: rgba(0,0,0,0.5) !important;
 }
 
 body {

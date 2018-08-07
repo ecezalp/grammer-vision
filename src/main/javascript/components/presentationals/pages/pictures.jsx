@@ -75,17 +75,17 @@ export default function Pictures({
   }
 
   return <div className="pictures-container">
-      <div className="left">
-        {getUserName(picture)}
-        {getPictureContainer(picture)}
-        {getLocation(picture)}
-        {arrowButtons}
-      </div>
-      <div className="right">
-        {tagList}
-        {search}
-      </div>
-    </div>;
+    <div className="left">
+      {getUserName(picture)}
+      {getPictureContainer(picture)}
+      {getLocation(picture)}
+      {arrowButtons}
+    </div>
+    <div className="right">
+      {tagList}
+      {search}
+    </div>
+  </div>;
 }
 
 Pictures.propTypes = {

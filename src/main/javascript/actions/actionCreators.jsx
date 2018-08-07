@@ -17,10 +17,16 @@ import {
   SET_LOGIN_BUTTON,
   SET_CHECKBOX_CHECKED,
   SET_CHECKBOX_HIDDEN,
+  SET_DEMO_PROFILE,
 } from "./actionConstants";
 
 export const toggleSearchSwitch = () => ({
   type: TOGGLE_SEARCH_SWITCH,
+});
+
+export const setDemoProfile = (isDemoProfile) => ({
+  type: SET_DEMO_PROFILE,
+  payload: isDemoProfile,
 });
 
 export const setCheckboxChecked = (isChecked) => ({

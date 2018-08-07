@@ -8,6 +8,7 @@ const mapStateToProps = state => ({...state.privacy, ...state.token});
 const mapDispatchToProps = dispatch => ({
   getInstaToken: (state) => getTokenUrlRequest(dispatch, state),
   handleDemoClick: () => {
+    dispatch(actions.setDemoProfile(true));
     dispatch(actions.setCheckboxHidden(true));
     dispatch(actions.setLoginButton(true));
   }

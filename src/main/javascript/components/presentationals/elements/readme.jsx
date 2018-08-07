@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import DemoLoginInfo from "./demoLoginInfo";
+import CheckboxContainer from "../../containers/checkboxContainer";
 
 export default function Readme({
                                  isLoginEnabled, handleDemoClick, getInstaToken,
-                                 tokenString, isFetchingToken, checkbox,
-                                 defaultPanel, formAlternative
+                                 tokenString, isFetchingToken, checkbox, defaultPanel
                                }) {
 
   const handleInstagramLoginClick = () => {
@@ -34,7 +34,7 @@ export default function Readme({
   </div>;
 
   const miniform = <div className="mini-form-container">
-    {checkbox.isHidden ? <DemoLoginInfo/> : formAlternative}
+    {checkbox.isHidden ? <DemoLoginInfo/> : <CheckboxContainer/>}
   </div>;
 
   return <div className="readme">

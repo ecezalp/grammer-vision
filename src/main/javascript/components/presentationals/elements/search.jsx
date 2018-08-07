@@ -4,14 +4,20 @@ import {TextField} from "material-ui";
 import Button from '@material-ui/core/Button';
 import Switcher from './switcher';
 
-export default function Search({search, handleInputChange, searchInput, toggleSearchSwitch, isSearchShowing, tokenString}) {
+export default function Search({
+                                 search, handleInputChange, searchInput,
+                                 toggleSearchSwitch, isSearchShowing,
+                                 tokenString, isDemoProfileActive
+                               }) {
 
   const switcher =
     <Switcher
-      onClick={toggleSearchSwitch}
+      handleClick={toggleSearchSwitch}
       isShowing={isSearchShowing}
       onText="hide"
       offText="search"
+      isDisabled={isDemoProfileActive}
+      disabledTitle="Search is not available on Demo Profile"
     />;
 
   const icon = <i className="fas fa-2x fa-search"/>;
@@ -28,7 +34,7 @@ export default function Search({search, handleInputChange, searchInput, toggleSe
       {icon}
     </Button>;
 
-  const searchIfShowing = isSearchShowing &&
+  const searchIfShowing = (isSearchShowing && !isDemoProfileActive) &&
     <div className="search-field">
       {textField}
       {submit}
